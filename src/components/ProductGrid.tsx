@@ -3,12 +3,12 @@
 import { ProductCard } from '@/components/ProductCard';
 import { ProductVariantCard } from '@/components/ProductVariantCard';
 import { Skeleton } from '@/components/ui/skeleton';
-import type { ProductWithDetails } from '@/services/productService';
+import type { ProductWithDetails, ProductVariantWithDetails } from '@/types';
 
 interface ProductGridProps {
   products: ProductWithDetails[];
   isLoading?: boolean;
-  onAddToCart?: (product: ProductWithDetails, variant?: any) => void;
+  onAddToCart?: (product: ProductWithDetails, variant?: ProductVariantWithDetails) => void;
   onToggleWishlist?: (product: ProductWithDetails) => void;
   onQuickView?: (product: ProductWithDetails) => void;
   showActions?: boolean;

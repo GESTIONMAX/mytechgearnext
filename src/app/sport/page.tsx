@@ -2,37 +2,33 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { ProductGrid } from '@/components/ProductGrid';
 import { CheckCircle, Clock, Shield, Star, Truck, Headphones, Zap, Gauge, MapPin, Battery, Play } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useProducts } from '@/hooks/useSupabaseProducts';
 import { useState } from 'react';
+import type { ProductWithDetails, ProductVariant } from '@/types';
 
-export default function SportPage(): JSX.Element {
+export default function SportPage(): React.JSX.Element {
   const [showVariants, setShowVariants] = useState(true);
-  
+
   // Récupérer les produits (tous les produits actifs)
   const { data: allProducts = [], isLoading, error } = useProducts();
-  
-  // Filtrer les produits de la catégorie SPORT
-  const products = allProducts.filter(product => 
-    product.category?.name?.toUpperCase() === 'SPORT'
-  );
 
-  const handleAddToCart = (product: any, variant?: any): void => {
-    console.log('Ajouter au panier:', product.name, variant ? variant.name : '');
+  // Filtrer les produits de la catégorie SPORT
+  const products = allProducts.filter((product) => product.category?.name?.toUpperCase() === 'SPORT');
+
+  const handleAddToCart = (_product: ProductWithDetails, _variant?: ProductVariant): void => {
     // TODO: Implémenter l'ajout au panier
   };
 
-  const handleToggleWishlist = (product: any): void => {
-    console.log('Toggle wishlist:', product.name);
+  const handleToggleWishlist = (_product: ProductWithDetails): void => {
     // TODO: Implémenter la wishlist
   };
 
-  const handleQuickView = (product: any): void => {
-    console.log('Quick view:', product.name);
+  const handleQuickView = (_product: ProductWithDetails): void => {
     // TODO: Implémenter l'aperçu rapide
   };
   return (
@@ -179,19 +175,13 @@ export default function SportPage(): JSX.Element {
             <p className="text-lg text-gray-600 max-w-2xl">
               De l&apos;entrée de gamme au haut de gamme, trouvez les lunettes parfaites pour votre pratique sportive.
             </p>
-            
+
             {/* Contrôles d'affichage */}
             <div className="mt-6 flex justify-center space-x-4">
-              <Button 
-                variant={showVariants ? "default" : "outline"}
-                onClick={() => setShowVariants(true)}
-              >
+              <Button variant={showVariants ? 'default' : 'outline'} onClick={() => setShowVariants(true)}>
                 Afficher les variantes
               </Button>
-              <Button 
-                variant={!showVariants ? "default" : "outline"}
-                onClick={() => setShowVariants(false)}
-              >
+              <Button variant={!showVariants ? 'default' : 'outline'} onClick={() => setShowVariants(false)}>
                 Produits principaux
               </Button>
             </div>

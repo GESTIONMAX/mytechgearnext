@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { ProductGrid } from '@/components/ProductGrid';
 import {
   CheckCircle,
@@ -22,8 +22,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useProducts } from '@/hooks/useSupabaseProducts';
 import { useState } from 'react';
+import type { ProductWithDetails, ProductVariant } from '@/types';
 
-export default function PrismaticPage(): JSX.Element {
+export default function PrismaticPage(): React.JSX.Element {
   const [showVariants, setShowVariants] = useState(true);
 
   // Récupérer les produits (tous les produits actifs)
@@ -32,18 +33,15 @@ export default function PrismaticPage(): JSX.Element {
   // Filtrer les produits de la catégorie PRISMATIC
   const products = allProducts.filter((product) => product.category?.name?.toUpperCase() === 'PRISMATIC');
 
-  const handleAddToCart = (product: any, variant?: any): void => {
-    console.log('Ajouter au panier:', product.name, variant ? variant.name : '');
+  const handleAddToCart = (_product: ProductWithDetails, _variant?: ProductVariant): void => {
     // TODO: Implémenter l'ajout au panier
   };
 
-  const handleToggleWishlist = (product: any): void => {
-    console.log('Toggle wishlist:', product.name);
+  const handleToggleWishlist = (_product: ProductWithDetails): void => {
     // TODO: Implémenter la wishlist
   };
 
-  const handleQuickView = (product: any): void => {
-    console.log('Quick view:', product.name);
+  const handleQuickView = (_product: ProductWithDetails): void => {
     // TODO: Implémenter l'aperçu rapide
   };
 
@@ -111,7 +109,7 @@ export default function PrismaticPage(): JSX.Element {
               >
                 Voir les specs techniques
               </Button>
-              </div>
+            </div>
 
             {/* Trust indicators */}
             <div className="flex flex-wrap gap-6 text-white">
@@ -383,7 +381,7 @@ export default function PrismaticPage(): JSX.Element {
             <p className="text-lg text-gray-600">
               Découvrez les secrets de nos verres à couleur réglable et leurs innovations.
             </p>
-        </div>
+          </div>
 
           <div className="space-y-4">
             {[
@@ -429,8 +427,8 @@ export default function PrismaticPage(): JSX.Element {
               <MessageCircle className="h-5 w-5 mr-2" />
               Chat en direct 24/7
             </Button>
+          </div>
         </div>
-      </div>
       </section>
     </div>
   );

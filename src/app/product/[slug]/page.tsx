@@ -8,7 +8,7 @@ import { ArrowLeft, Home } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-export default function ProductDetailPage(): JSX.Element {
+export default function ProductDetailPage(): React.JSX.Element {
   const params = useParams();
   const slug = params?.slug as string;
 

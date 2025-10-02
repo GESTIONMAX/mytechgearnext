@@ -1,7 +1,7 @@
 import Hero from '@/components/Hero';
 import { TestSupabaseConnection } from '@/components/TestSupabaseConnection';
 
-export default function Home(): JSX.Element {
+export default function Home(): React.JSX.Element {
   return (
     <div className="min-h-screen bg-background">
       <Hero />

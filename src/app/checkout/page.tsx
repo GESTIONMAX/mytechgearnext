@@ -1,265 +1,303 @@
+'use client';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { ArrowLeft, CreditCard, Shield, Truck } from 'lucide-react';
+import { useCart } from '@/contexts/cart-context';
+import { ArrowLeft, CreditCard, MapPin, User, Lock, Truck, Shield } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import type { ReactNode } from 'react';
+import { useState } from 'react';
 
-export default function CheckoutPage(): ReactNode {
-  const cartItems = [
-    {
-      id: '1',
-      name: 'Sport Pro Max',
-      variant: 'Noir - Taille L',
-      price: 399.0,
-      quantity: 1,
-      image: '/placeholder-product.jpg',
-    },
-    {
-      id: '2',
-      name: 'Lifestyle Elite',
-      variant: 'Argent - Taille M',
-      price: 299.0,
-      quantity: 1,
-      image: '/placeholder-product.jpg',
-    },
-  ];
+export default function CheckoutPage(): React.JSX.Element {
+  const { items, getTotalPrice, clearCart } = useCart();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    zipCode: '',
+    country: 'France',
+  });
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const shipping = 9.99;
-  const tax = subtotal * 0.2; // 20% TVA
-  const total = subtotal + shipping + tax;
+  const formatPrice = (price: number): string => {
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(price / 100);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+    e.preventDefault();
+    setIsProcessing(true);
+
+    // Simulation du traitement de commande
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    // Vider le panier après commande réussie
+    clearCart();
+    setIsProcessing(false);
+
+    // Redirection vers page de confirmation
+    window.location.href = '/checkout/success';
+  };
+
+  if (items.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Votre panier est vide</h1>
+          <p className="text-gray-600 mb-6">Ajoutez des produits à votre panier pour continuer</p>
+          <Link href="/products">
+            <Button>Voir les produits</Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <Button variant="ghost" asChild className="mb-4">
-            <Link href="/products">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Retour aux produits
-            </Link>
-          </Button>
-          <h1 className="text-3xl font-bold text-gray-900">Finaliser la commande</h1>
-          <p className="mt-2 text-gray-600">Vérifiez vos informations et finalisez votre achat</p>
+          <Link href="/products" className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 mb-4">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Retour aux produits
+          </Link>
+          <h1 className="text-3xl font-bold text-gray-900">Finaliser votre commande</h1>
+          <p className="text-gray-600 mt-2">Remplissez vos informations pour compléter votre achat</p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Checkout Form */}
-          <div className="space-y-6">
-            {/* Shipping Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Truck className="h-5 w-5 mr-2" />
-                  Informations de livraison
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Prénom</label>
-                    <Input placeholder="Jean" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Nom</label>
-                    <Input placeholder="Dupont" />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Email</label>
-                  <Input type="email" placeholder="jean.dupont@email.com" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Téléphone</label>
-                  <Input placeholder="+33 6 12 34 56 78" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Adresse</label>
-                  <Input placeholder="123 Rue de la Paix" />
-                </div>
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Code postal</label>
-                    <Input placeholder="75001" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Ville</label>
-                    <Input placeholder="Paris" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Pays</label>
-                    <Input placeholder="France" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Payment Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <CreditCard className="h-5 w-5 mr-2" />
-                  Informations de paiement
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Numéro de carte</label>
-                  <Input placeholder="1234 5678 9012 3456" />
-                </div>
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Mois</label>
-                    <Input placeholder="MM" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">Année</label>
-                    <Input placeholder="YY" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-700">CVV</label>
-                    <Input placeholder="123" />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-700">Nom sur la carte</label>
-                  <Input placeholder="Jean Dupont" />
-                </div>
-                <div className="flex items-center space-x-2">
-                  <input type="checkbox" id="save-card" />
-                  <label htmlFor="save-card" className="text-sm text-gray-600">
-                    Enregistrer cette carte pour les prochains achats
-                  </label>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Delivery Options */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Options de livraison</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <label className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                    <input type="radio" name="delivery" value="standard" defaultChecked />
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">Livraison standard</span>
-                        <span className="text-sm text-gray-600">Gratuit</span>
-                      </div>
-                      <p className="text-sm text-gray-600">5-7 jours ouvrés</p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Formulaire de commande */}
+          <div className="lg:col-span-2">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Informations personnelles */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <User className="h-5 w-5" />
+                    Informations personnelles
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="firstName">Prénom *</Label>
+                      <Input
+                        id="firstName"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
-                  </label>
-                  <label className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
-                    <input type="radio" name="delivery" value="express" />
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium">Livraison express</span>
-                        <span className="text-sm text-gray-600">9.99€</span>
-                      </div>
-                      <p className="text-sm text-gray-600">2-3 jours ouvrés</p>
+                    <div>
+                      <Label htmlFor="lastName">Nom *</Label>
+                      <Input
+                        id="lastName"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
-                  </label>
-                </div>
-              </CardContent>
-            </Card>
+                  </div>
+                  <div>
+                    <Label htmlFor="email">Email *</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="phone">Téléphone</Label>
+                    <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleInputChange} />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Adresse de livraison */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MapPin className="h-5 w-5" />
+                    Adresse de livraison
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label htmlFor="address">Adresse *</Label>
+                    <Input id="address" name="address" value={formData.address} onChange={handleInputChange} required />
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <Label htmlFor="city">Ville *</Label>
+                      <Input id="city" name="city" value={formData.city} onChange={handleInputChange} required />
+                    </div>
+                    <div>
+                      <Label htmlFor="zipCode">Code postal *</Label>
+                      <Input
+                        id="zipCode"
+                        name="zipCode"
+                        value={formData.zipCode}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="country">Pays *</Label>
+                      <Input
+                        id="country"
+                        name="country"
+                        value={formData.country}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Méthode de paiement */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <CreditCard className="h-5 w-5" />
+                    Paiement sécurisé
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-sm">
+                          V
+                        </div>
+                        <div>
+                          <p className="font-medium">Visa</p>
+                          <p className="text-sm text-gray-600">**** **** **** 1234</p>
+                        </div>
+                      </div>
+                      <Badge variant="outline">Défaut</Badge>
+                    </div>
+                    <div className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center text-white font-bold text-sm">
+                          M
+                        </div>
+                        <div>
+                          <p className="font-medium">Mastercard</p>
+                          <p className="text-sm text-gray-600">**** **** **** 5678</p>
+                        </div>
+                      </div>
+                    </div>
+                    <Button variant="outline" className="w-full">
+                      Ajouter une carte
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Bouton de commande */}
+              <Button type="submit" size="lg" className="w-full" disabled={isProcessing}>
+                {isProcessing ? 'Traitement...' : 'Confirmer la commande'}
+              </Button>
+            </form>
           </div>
 
-          {/* Order Summary */}
-          <div className="space-y-6">
-            <Card>
+          {/* Résumé de la commande */}
+          <div className="lg:col-span-1">
+            <Card className="sticky top-8">
               <CardHeader>
                 <CardTitle>Résumé de la commande</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {cartItems.map((item) => (
-                    <div key={item.id} className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gray-100 rounded flex items-center justify-center">
-                        <span className="text-gray-400 text-xs">Image</span>
+              <CardContent className="space-y-4">
+                {/* Articles */}
+                <div className="space-y-3">
+                  {items.map((item) => (
+                    <div key={`${item.productId}-${item.variantId || 'default'}`} className="flex gap-3">
+                      <div className="relative w-12 h-12 flex-shrink-0">
+                        <Image
+                          src={item.variant?.image_url || item.product.image_url || '/placeholder.svg'}
+                          alt={item.product.name}
+                          fill
+                          className="object-cover rounded-md"
+                        />
                       </div>
-                      <div className="flex-1">
-                        <h3 className="font-medium">{item.name}</h3>
-                        <p className="text-sm text-gray-600">{item.variant}</p>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-medium text-sm text-gray-900 truncate">{item.product.name}</h4>
+                        {item.variant && <p className="text-xs text-gray-600 truncate">{item.variant.name}</p>}
                         <p className="text-sm text-gray-600">Quantité: {item.quantity}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-semibold">{(item.price * item.quantity).toFixed(2)}€</p>
+                        <p className="font-medium text-sm">
+                          {formatPrice((item.variant?.price ?? item.product.price) * item.quantity)}
+                        </p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <Separator className="my-4" />
+
+                <Separator />
+
+                {/* Totaux */}
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Sous-total</span>
-                    <span>{subtotal.toFixed(2)}€</span>
+                    <span>{formatPrice(getTotalPrice())}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span>Livraison</span>
-                    <span>{shipping.toFixed(2)}€</span>
+                    <span className="text-green-600">Gratuite</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span>TVA (20%)</span>
-                    <span>{tax.toFixed(2)}€</span>
+                    <span>Taxes</span>
+                    <span>{formatPrice(getTotalPrice() * 0.2)}</span>
                   </div>
                   <Separator />
                   <div className="flex justify-between font-semibold text-lg">
                     <span>Total</span>
-                    <span>{total.toFixed(2)}€</span>
+                    <span>{formatPrice(getTotalPrice() * 1.2)}</span>
+                  </div>
+                </div>
+
+                {/* Garanties */}
+                <div className="space-y-3 pt-4 border-t">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <Truck className="h-4 w-4" />
+                    <span>Livraison gratuite sous 24-48h</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <Shield className="h-4 w-4" />
+                    <span>Paiement 100% sécurisé</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <Lock className="h-4 w-4" />
+                    <span>Données protégées</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
-
-            {/* Security & Trust */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Shield className="h-5 w-5 mr-2" />
-                  Sécurité et garanties
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Shield className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Paiement 100% sécurisé</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Truck className="h-4 w-4 text-green-600" />
-                  <span className="text-sm">Livraison gratuite dès 100€</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Badge variant="secondary">Garantie 2 ans</Badge>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Badge variant="secondary">Retour gratuit sous 30 jours</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Place Order Button */}
-            <Button className="w-full" size="lg">
-              <CreditCard className="h-5 w-5 mr-2" />
-              Finaliser la commande - {total.toFixed(2)}€
-            </Button>
-
-            <p className="text-xs text-gray-500 text-center">
-              En finalisant votre commande, vous acceptez nos{' '}
-              <Link href="/terms" className="text-primary hover:underline">
-                conditions générales de vente
-              </Link>{' '}
-              et notre{' '}
-              <Link href="/privacy" className="text-primary hover:underline">
-                politique de confidentialité
-              </Link>
-              .
-            </p>
           </div>
         </div>
       </div>

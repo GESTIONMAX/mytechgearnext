@@ -3,9 +3,6 @@
 import { ProductCard } from '@/components/ProductCard';
 import { ProductVariantCard } from '@/components/ProductVariantCard';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { ShoppingCart, Heart } from 'lucide-react';
-import Image from 'next/image';
 import { useState } from 'react';
 
 // Données de test

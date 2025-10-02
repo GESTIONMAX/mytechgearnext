@@ -1,7 +1,6 @@
 'use client';
 
 import { ProductVariantCard } from '@/components/ProductVariantCard';
-import { Skeleton } from '@/components/ui/skeleton';
 import type { ProductWithDetails } from '@/services/productService';
 
 interface ProductVariantsGridProps {

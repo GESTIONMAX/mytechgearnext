@@ -3,6 +3,7 @@
 import { createClient } from '@/lib/supabase/client';
 import type { Product, Category } from '@/types';
 import { useQuery } from '@tanstack/react-query';
+import { logger } from '@/lib/logger';
 
 export const useProducts = (): {
   products: Product[];
@@ -16,7 +17,7 @@ export const useProducts = (): {
   return useQuery({
     queryKey: ['products', 'v3', new Date().getHours()], // Force cache refresh every hour
     queryFn: async (): Promise<Product[]> => {
-      console.log('🔄 Fetching products...');
+      logger.debug('Fetching products...');
 
       const { data: products, error } = await supabase
         .from('products')
@@ -30,10 +31,10 @@ export const useProducts = (): {
         .eq('is_active', true)
         .order('created_at', { ascending: false });
 
-      console.log('📦 Products raw data:', { products, error });
+      logger.debug('Products raw data', { count: products?.length, hasError: !!error });
 
       if (error) {
-        console.error('❌ Products fetch error:', error);
+        logger.error('Products fetch error', error);
         throw error;
       }
 
@@ -42,16 +43,16 @@ export const useProducts = (): {
         .select('id, name, slug')
         .eq('is_active', true);
 
-      console.log('📂 Categories data:', { categories, categoriesError });
+      logger.debug('Categories data', { count: categories?.length, hasError: !!categoriesError });
 
       if (categoriesError) {
-        console.error('❌ Categories fetch error:', categoriesError);
+        logger.error('Categories fetch error', categoriesError);
         throw categoriesError;
       }
 
       const categoryMap = new Map(categories.map((c: { id: string; name: string }) => [c.id, c]));
 
-      console.log('🏷️ Category mapping:', Object.fromEntries(categoryMap));
+      logger.debug('Category mapping created', { categoryCount: categoryMap.size });
 
       const transformedProducts = products.map((product) => ({
         id: product.id,
@@ -83,7 +84,7 @@ export const useProducts = (): {
           })) || [],
       }));
 
-      console.log('✅ Transformed products:', transformedProducts.length, transformedProducts);
+      logger.debug('Products transformation completed', { count: transformedProducts.length });
 
       return transformedProducts;
     },

@@ -7,6 +7,8 @@ import { Star, ShoppingCart, Heart, Eye, Share2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useCart } from '@/contexts/cart-context';
+import { logger } from '@/lib/logger';
 import type { ProductWithDetails } from '@/services/productService';
 
 interface ProductCardProps {
@@ -25,6 +27,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   showActions = true,
 }) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const { addItem } = useCart();
   const formatPrice = (price: number): string => {
     return new Intl.NumberFormat('fr-FR', {
       style: 'currency',
@@ -95,6 +98,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           console.error('Erreur lors de la copie:', error);
         });
     }
+  };
+
+  const handleAddToCart = (e: React.MouseEvent): void => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Ajouter au panier via le contexte
+    addItem(product, 1);
+
+    // Appeler la fonction callback si fournie
+    onAddToCart?.(product);
+
+    // Feedback visuel (optionnel)
+    logger.info('Product added to cart', { productName: product.name, productId: product.id });
   };
 
   return (
@@ -228,16 +245,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {/* Actions */}
             {showActions && (
               <div className="flex gap-2 pt-2">
-                <Button
-                  size="sm"
-                  className="flex-1"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    onAddToCart?.(product);
-                  }}
-                  disabled={!product.in_stock}
-                >
+                <Button size="sm" className="flex-1" onClick={handleAddToCart} disabled={!product.in_stock}>
                   <ShoppingCart className="h-4 w-4 mr-1" />
                   Ajouter
                 </Button>

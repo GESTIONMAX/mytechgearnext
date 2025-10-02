@@ -1,7 +1,7 @@
 'use client';
 
 import { useProducts, useCategories } from '@/hooks/useSupabaseProducts';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 export const TestSupabaseConnection: React.FC = () => {

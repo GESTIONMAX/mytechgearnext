@@ -1,16 +1,13 @@
 import { createClient } from '@/lib/supabase/client';
 import type { Database } from '@/lib/supabase/types';
+import type { ProductWithDetails } from '@/types';
 
 type Product = Database['public']['Tables']['products']['Row'];
 type ProductVariant = Database['public']['Tables']['product_variants']['Row'];
 type ProductImage = Database['public']['Tables']['product_images']['Row'];
 type Category = Database['public']['Tables']['categories']['Row'];
 
-export interface ProductWithDetails extends Product {
-  variants: ProductVariant[];
-  images: ProductImage[];
-  category?: Category;
-}
+// Utilise les types définis dans /types/index.ts
 
 export interface ProductFilters {
   category?: string;
@@ -31,12 +28,14 @@ export class ProductService {
   async getProducts(filters?: ProductFilters): Promise<ProductWithDetails[]> {
     let query = this.supabase
       .from('products')
-      .select(`
+      .select(
+        `
         *,
         variants:product_variants(*),
         images:product_images(*),
         category:categories(*)
-      `)
+      `,
+      )
       .eq('is_active', true);
 
     // Appliquer les filtres
@@ -80,12 +79,14 @@ export class ProductService {
   async getProductBySlug(slug: string): Promise<ProductWithDetails | null> {
     const { data, error } = await this.supabase
       .from('products')
-      .select(`
+      .select(
+        `
         *,
         variants:product_variants(*),
         images:product_images(*),
         category:categories(*)
-      `)
+      `,
+      )
       .eq('slug', slug)
       .eq('is_active', true)
       .single();
@@ -104,12 +105,14 @@ export class ProductService {
   async getProductsByCategory(categorySlug: string): Promise<ProductWithDetails[]> {
     const { data, error } = await this.supabase
       .from('products')
-      .select(`
+      .select(
+        `
         *,
         variants:product_variants(*),
         images:product_images(*),
         category:categories(*)
-      `)
+      `,
+      )
       .eq('is_active', true)
       .eq('categories.slug', categorySlug)
       .order('created_at', { ascending: false });
@@ -128,12 +131,14 @@ export class ProductService {
   async getFeaturedProducts(limit: number = 8): Promise<ProductWithDetails[]> {
     const { data, error } = await this.supabase
       .from('products')
-      .select(`
+      .select(
+        `
         *,
         variants:product_variants(*),
         images:product_images(*),
         category:categories(*)
-      `)
+      `,
+      )
       .eq('is_active', true)
       .eq('in_stock', true)
       .order('created_at', { ascending: false })
@@ -153,12 +158,14 @@ export class ProductService {
   async getSaleProducts(limit: number = 8): Promise<ProductWithDetails[]> {
     const { data, error } = await this.supabase
       .from('products')
-      .select(`
+      .select(
+        `
         *,
         variants:product_variants(*),
         images:product_images(*),
         category:categories(*)
-      `)
+      `,
+      )
       .eq('is_active', true)
       .not('sale_price', 'is', null)
       .order('created_at', { ascending: false })
@@ -178,12 +185,14 @@ export class ProductService {
   async searchProducts(searchTerm: string, limit: number = 20): Promise<ProductWithDetails[]> {
     const { data, error } = await this.supabase
       .from('products')
-      .select(`
+      .select(
+        `
         *,
         variants:product_variants(*),
         images:product_images(*),
         category:categories(*)
-      `)
+      `,
+      )
       .eq('is_active', true)
       .or(`name.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%,short_description.ilike.%${searchTerm}%`)
       .order('created_at', { ascending: false })
@@ -203,12 +212,14 @@ export class ProductService {
   async getSimilarProducts(productId: string, categoryId: string, limit: number = 4): Promise<ProductWithDetails[]> {
     const { data, error } = await this.supabase
       .from('products')
-      .select(`
+      .select(
+        `
         *,
         variants:product_variants(*),
         images:product_images(*),
         category:categories(*)
-      `)
+      `,
+      )
       .eq('is_active', true)
       .eq('category_id', categoryId)
       .neq('id', productId)

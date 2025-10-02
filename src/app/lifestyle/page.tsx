@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { ProductGrid } from '@/components/ProductGrid';
 import {
   CheckCircle,
@@ -24,8 +24,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useProducts } from '@/hooks/useSupabaseProducts';
 import { useState } from 'react';
+import type { ProductWithDetails, ProductVariant } from '@/types';
 
-export default function LifestylePage(): JSX.Element {
+export default function LifestylePage(): React.JSX.Element {
   const [showVariants, setShowVariants] = useState(true);
 
   // Récupérer les produits (tous les produits actifs)
@@ -34,18 +35,15 @@ export default function LifestylePage(): JSX.Element {
   // Filtrer les produits de la catégorie LIFESTYLE
   const products = allProducts.filter((product) => product.category?.name?.toUpperCase() === 'LIFESTYLE');
 
-  const handleAddToCart = (product: any, variant?: any): void => {
-    console.log('Ajouter au panier:', product.name, variant ? variant.name : '');
+  const handleAddToCart = (_product: ProductWithDetails, _variant?: ProductVariant): void => {
     // TODO: Implémenter l'ajout au panier
   };
 
-  const handleToggleWishlist = (product: any): void => {
-    console.log('Toggle wishlist:', product.name);
+  const handleToggleWishlist = (_product: ProductWithDetails): void => {
     // TODO: Implémenter la wishlist
   };
 
-  const handleQuickView = (product: any): void => {
-    console.log('Quick view:', product.name);
+  const handleQuickView = (_product: ProductWithDetails): void => {
     // TODO: Implémenter l'aperçu rapide
   };
 

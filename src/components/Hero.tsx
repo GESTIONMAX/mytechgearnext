@@ -6,7 +6,7 @@ import { ArrowRight, Shield, Truck, Zap } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Hero = (): void => {
+const Hero = (): React.JSX.Element => {
   return (
     <section className="relative min-h-[80vh] flex items-center overflow-hidden">
       {/* Background gradient */}

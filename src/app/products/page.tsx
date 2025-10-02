@@ -9,7 +9,7 @@ import { useProducts } from '@/hooks/useSupabaseProducts';
 import { Grid, List, Search } from 'lucide-react';
 import { useState } from 'react';
 
-export default function ProductsPage(): JSX.Element {
+export default function ProductsPage(): React.JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
   const [showVariants, setShowVariants] = useState(false);
   const [filters, setFilters] = useState({
@@ -61,7 +61,7 @@ export default function ProductsPage(): JSX.Element {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-8 text-4xl font-bold">Nos Produits</h1>
-      
+
       {/* Test de connexion Supabase */}
       <div className="mb-8">
         <SupabaseTest />

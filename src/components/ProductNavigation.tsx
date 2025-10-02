@@ -1,11 +1,10 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { useCategories } from '@/hooks/useSupabaseProducts';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Home, Grid, List, Filter } from 'lucide-react';
+import { Grid, List, Filter } from 'lucide-react';
 
 interface ProductNavigationProps {
   onViewToggle?: (view: 'grid' | 'list') => void;

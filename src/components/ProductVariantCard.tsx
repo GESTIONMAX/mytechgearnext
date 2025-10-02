@@ -7,12 +7,14 @@ import { Star, ShoppingCart, Heart, Eye, Share2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import type { ProductWithDetails } from '@/services/productService';
+import { useCart } from '@/contexts/cart-context';
+import { logger } from '@/lib/logger';
+import type { ProductWithDetails, ProductVariantWithDetails } from '@/types';
 
 interface ProductVariantCardProps {
   product: ProductWithDetails;
-  variant: any;
-  onAddToCart?: (product: ProductWithDetails, variant: any) => void;
+  variant: ProductVariantWithDetails;
+  onAddToCart?: (product: ProductWithDetails, variant: ProductVariantWithDetails) => void;
   onToggleWishlist?: (product: ProductWithDetails) => void;
   onQuickView?: (product: ProductWithDetails) => void;
   showActions?: boolean;
@@ -27,6 +29,7 @@ export const ProductVariantCard: React.FC<ProductVariantCardProps> = ({
   showActions = true,
 }) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const { addItem } = useCart();
   const formatPrice = (price: number): string => {
     return new Intl.NumberFormat('fr-FR', {
       style: 'currency',
@@ -102,6 +105,25 @@ export const ProductVariantCard: React.FC<ProductVariantCardProps> = ({
           console.error('Erreur lors de la copie:', error);
         });
     }
+  };
+
+  const handleAddToCart = (e: React.MouseEvent): void => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Ajouter au panier via le contexte avec l'ID de la variante
+    addItem(product, 1, variant.id);
+
+    // Appeler la fonction callback si fournie
+    onAddToCart?.(product, variant);
+
+    // Feedback visuel (optionnel)
+    logger.info('Product variant added to cart', {
+      productName: product.name,
+      variantName: variant.name,
+      productId: product.id,
+      variantId: variant.id,
+    });
   };
 
   return (
@@ -216,16 +238,7 @@ export const ProductVariantCard: React.FC<ProductVariantCardProps> = ({
             {/* Actions */}
             {showActions && (
               <div className="flex gap-2 pt-2">
-                <Button
-                  size="sm"
-                  className="flex-1"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    onAddToCart?.(product, variant);
-                  }}
-                  disabled={!variant.in_stock}
-                >
+                <Button size="sm" className="flex-1" onClick={handleAddToCart} disabled={!variant.in_stock}>
                   <ShoppingCart className="h-4 w-4 mr-1" />
                   Ajouter
                 </Button>

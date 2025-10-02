@@ -6,11 +6,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, X } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
+import type { ProductVariantWithDetails } from '@/types';
 
 interface ProductVariantSelectorProps {
-  variants: any[];
-  selectedVariant: any | null;
-  onVariantSelect: (variant: any) => void;
+  variants: ProductVariantWithDetails[];
+  selectedVariant: ProductVariantWithDetails | null;
+  onVariantSelect: (variant: ProductVariantWithDetails) => void;
   onClose?: () => void;
   showCloseButton?: boolean;
 }
