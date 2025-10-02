@@ -2,10 +2,10 @@
 
 /**
  * Script de migration des buckets Supabase
- * 
+ *
  * Ce script vous aide à migrer vos buckets Supabase depuis l'ancien projet
  * vers le nouveau projet Next.js.
- * 
+ *
  * Usage:
  * 1. Configurez vos variables d'environnement dans .env.local
  * 2. Exécutez: node scripts/migrate-buckets.js
@@ -19,13 +19,7 @@ const OLD_SUPABASE_KEY = process.env.OLD_SUPABASE_KEY;
 const NEW_SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const NEW_SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-const BUCKETS_TO_MIGRATE = [
-  'category-images',
-  'product-images', 
-  'product-gallery',
-  'variant-images',
-  'ui-assets'
-];
+const BUCKETS_TO_MIGRATE = ['category-images', 'product-images', 'product-gallery', 'variant-images', 'ui-assets'];
 
 async function migrateBuckets() {
   console.log('🚀 Début de la migration des buckets Supabase...\n');
@@ -48,12 +42,10 @@ async function migrateBuckets() {
 
   for (const bucketName of BUCKETS_TO_MIGRATE) {
     console.log(`📦 Migration du bucket: ${bucketName}`);
-    
+
     try {
       // Vérifier si le bucket existe dans l'ancien projet
-      const { data: oldFiles, error: listError } = await oldClient.storage
-        .from(bucketName)
-        .list('', { limit: 1000 });
+      const { data: oldFiles, error: listError } = await oldClient.storage.from(bucketName).list('', { limit: 1000 });
 
       if (listError) {
         console.log(`⚠️  Bucket ${bucketName} non trouvé dans l'ancien projet`);
@@ -71,7 +63,7 @@ async function migrateBuckets() {
       const { error: createError } = await newClient.storage.createBucket(bucketName, {
         public: true,
         fileSizeLimit: 50 * 1024 * 1024, // 50MB
-        allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml']
+        allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'],
       });
 
       if (createError && !createError.message.includes('already exists')) {
@@ -84,9 +76,7 @@ async function migrateBuckets() {
       for (const file of oldFiles) {
         try {
           // Télécharger depuis l'ancien bucket
-          const { data: fileData, error: downloadError } = await oldClient.storage
-            .from(bucketName)
-            .download(file.name);
+          const { data: fileData, error: downloadError } = await oldClient.storage.from(bucketName).download(file.name);
 
           if (downloadError) {
             console.log(`⚠️  Impossible de télécharger ${file.name}: ${downloadError.message}`);
@@ -94,12 +84,10 @@ async function migrateBuckets() {
           }
 
           // Upload vers le nouveau bucket
-          const { error: uploadError } = await newClient.storage
-            .from(bucketName)
-            .upload(file.name, fileData, {
-              cacheControl: '3600',
-              upsert: true
-            });
+          const { error: uploadError } = await newClient.storage.from(bucketName).upload(file.name, fileData, {
+            cacheControl: '3600',
+            upsert: true,
+          });
 
           if (uploadError) {
             console.log(`⚠️  Impossible d'uploader ${file.name}: ${uploadError.message}`);
@@ -108,14 +96,12 @@ async function migrateBuckets() {
 
           migratedCount++;
           console.log(`✅ ${file.name} migré`);
-
         } catch (error) {
           console.log(`❌ Erreur migration ${file.name}:`, error.message);
         }
       }
 
       console.log(`✅ Bucket ${bucketName}: ${migratedCount}/${oldFiles.length} fichiers migrés\n`);
-
     } catch (error) {
       console.error(`❌ Erreur migration bucket ${bucketName}:`, error.message);
     }
@@ -124,22 +110,20 @@ async function migrateBuckets() {
   console.log('🎉 Migration terminée !');
   console.log('\n📋 Prochaines étapes:');
   console.log('1. Vérifiez vos buckets dans le dashboard Supabase');
-  console.log('2. Testez l\'affichage des images sur votre site');
-  console.log('3. Mettez à jour les chemins d\'images si nécessaire');
+  console.log("2. Testez l'affichage des images sur votre site");
+  console.log("3. Mettez à jour les chemins d'images si nécessaire");
 }
 
 // Fonction pour lister les buckets existants
 async function listBuckets() {
-  console.log('📋 Buckets disponibles dans l\'ancien projet:');
-  
+  console.log("📋 Buckets disponibles dans l'ancien projet:");
+
   const oldClient = createClient(OLD_SUPABASE_URL, OLD_SUPABASE_KEY);
-  
+
   for (const bucketName of BUCKETS_TO_MIGRATE) {
     try {
-      const { data, error } = await oldClient.storage
-        .from(bucketName)
-        .list('', { limit: 1 });
-      
+      const { data: _data, error } = await oldClient.storage.from(bucketName).list('', { limit: 1 });
+
       if (error) {
         console.log(`❌ ${bucketName}: ${error.message}`);
       } else {

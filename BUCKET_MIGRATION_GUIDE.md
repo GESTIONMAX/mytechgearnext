@@ -9,7 +9,7 @@ Ce guide vous aide à migrer vos buckets Supabase (images, assets) depuis votre 
 Votre projet utilise 5 buckets principaux :
 
 1. **`category-images`** - Images des catégories/collections
-2. **`product-images`** - Images principales des produits  
+2. **`product-images`** - Images principales des produits
 3. **`product-gallery`** - Galeries photos des produits
 4. **`variant-images`** - Images des variantes de produits
 5. **`ui-assets`** - Icônes, logos, éléments UI
@@ -51,7 +51,7 @@ node scripts/migrate-buckets.js
 ### Option 2: Migration manuelle
 
 1. **Accédez au dashboard Supabase** de votre ancien projet
-2. **Allez dans Storage** 
+2. **Allez dans Storage**
 3. **Pour chaque bucket** :
    - Téléchargez les fichiers
    - Uploadez dans le nouveau projet
@@ -82,10 +82,10 @@ Les chemins d'images doivent être mis à jour dans votre base de données :
 
 ```sql
 -- Exemple de mise à jour des chemins
-UPDATE product_images 
+UPDATE product_images
 SET image_url = REPLACE(image_url, 'old-domain.com', 'new-domain.com');
 
-UPDATE category_images 
+UPDATE category_images
 SET image_url = REPLACE(image_url, 'old-domain.com', 'new-domain.com');
 ```
 
@@ -94,6 +94,7 @@ SET image_url = REPLACE(image_url, 'old-domain.com', 'new-domain.com');
 ### Problème : Images ne s'affichent pas
 
 **Solution :**
+
 1. Vérifiez que les buckets sont publics
 2. Vérifiez les politiques RLS
 3. Vérifiez les chemins dans la base de données
@@ -101,12 +102,13 @@ SET image_url = REPLACE(image_url, 'old-domain.com', 'new-domain.com');
 ### Problème : Erreur de permissions
 
 **Solution :**
+
 ```sql
 -- Créer les politiques RLS pour les buckets
-CREATE POLICY "Public Access" ON storage.objects 
+CREATE POLICY "Public Access" ON storage.objects
 FOR SELECT USING (bucket_id IN (
   'product-images',
-  'product-gallery', 
+  'product-gallery',
   'variant-images',
   'ui-assets',
   'category-images'
@@ -116,6 +118,7 @@ FOR SELECT USING (bucket_id IN (
 ### Problème : Fichiers trop volumineux
 
 **Solution :**
+
 1. Compressez les images avant upload
 2. Augmentez la limite de taille des buckets
 3. Utilisez un CDN externe
@@ -126,7 +129,7 @@ Après migration, vous devriez avoir :
 
 - ✅ **5 buckets** créés
 - ✅ **Images produits** migrées
-- ✅ **Images catégories** migrées  
+- ✅ **Images catégories** migrées
 - ✅ **Assets UI** migrés
 - ✅ **Politiques RLS** configurées
 

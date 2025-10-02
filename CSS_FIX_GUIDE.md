@@ -75,7 +75,7 @@ export async function middleware(request: NextRequest) {
     console.warn('⚠️ Variables Supabase non configurées, middleware désactivé');
     return;
   }
-  
+
   return await updateSession(request);
 }
 ```
@@ -113,11 +113,13 @@ npm run dev
 ### Si vous avez encore des erreurs CSS :
 
 1. **Vérifiez la configuration Tailwind :**
+
    ```bash
    npx tailwindcss --init
    ```
 
 2. **Redémarrez le serveur :**
+
    ```bash
    npm run dev
    ```
@@ -129,6 +131,7 @@ npm run dev
 ### Si vous avez des erreurs Supabase :
 
 1. **Configurez vos variables d'environnement :**
+
    ```env
    NEXT_PUBLIC_SUPABASE_URL=your_url_here
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key_here
@@ -142,7 +145,7 @@ npm run dev
 ## ✅ Statut
 
 - ✅ **CSS** - Toutes les classes Tailwind reconnues
-- ✅ **Variables** - Variables CSS personnalisées configurées  
+- ✅ **Variables** - Variables CSS personnalisées configurées
 - ✅ **PostCSS** - Configuration corrigée
 - ✅ **Serveur** - Démarre sans erreur
 - ⏳ **Supabase** - En attente de configuration

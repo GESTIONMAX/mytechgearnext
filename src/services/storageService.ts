@@ -2,11 +2,7 @@ import type { StorageBucket, StoragePathOptions } from '@/types/storage';
 import { BUCKET_CONFIGS } from '@/types/storage';
 
 export class StorageService {
-  static generateFilePath(
-    bucket: StorageBucket,
-    fileName: string,
-    options?: StoragePathOptions
-  ): string {
+  static generateFilePath(bucket: StorageBucket, fileName: string, options?: StoragePathOptions): string {
     const fileExt = fileName.split('.').pop();
     const timestamp = Date.now();
     const randomId = Math.random().toString(36).substring(7);
@@ -33,10 +29,7 @@ export class StorageService {
     }
   }
 
-  private static generateCategoryPath(
-    fileName: string,
-    options?: StoragePathOptions
-  ): string {
+  private static generateCategoryPath(fileName: string, options?: StoragePathOptions): string {
     if (options?.categoryId) {
       const type = options.type || 'hero';
       return `categories/${options.categoryId}/${type}/${fileName}`;
@@ -44,10 +37,7 @@ export class StorageService {
     return `categories/general/${fileName}`;
   }
 
-  private static generateProductPath(
-    fileName: string,
-    options?: StoragePathOptions
-  ): string {
+  private static generateProductPath(fileName: string, options?: StoragePathOptions): string {
     if (options?.productId) {
       const type = options.type || 'main';
       return `products/${options.productId}/${type}/${fileName}`;
@@ -55,20 +45,14 @@ export class StorageService {
     return `products/general/${fileName}`;
   }
 
-  private static generateProductGalleryPath(
-    fileName: string,
-    options?: StoragePathOptions
-  ): string {
+  private static generateProductGalleryPath(fileName: string, options?: StoragePathOptions): string {
     if (options?.productId) {
       return `products/${options.productId}/gallery/${fileName}`;
     }
     return `gallery/general/${fileName}`;
   }
 
-  private static generateVariantPath(
-    fileName: string,
-    options?: StoragePathOptions
-  ): string {
+  private static generateVariantPath(fileName: string, options?: StoragePathOptions): string {
     if (options?.productId && options?.variantId) {
       return `products/${options.productId}/variants/${options.variantId}/${fileName}`;
     } else if (options?.productId) {
@@ -77,19 +61,13 @@ export class StorageService {
     return `variants/general/${fileName}`;
   }
 
-  private static generateUIAssetsPath(
-    fileName: string,
-    options?: StoragePathOptions
-  ): string {
+  private static generateUIAssetsPath(fileName: string, options?: StoragePathOptions): string {
     const folder = options?.folder || 'general';
     const type = options?.type || 'icon';
     return `ui/${folder}/${type}/${fileName}`;
   }
 
-  static validateFile(
-    file: File,
-    bucket: StorageBucket
-  ): { isValid: boolean; error?: string } {
+  static validateFile(file: File, bucket: StorageBucket): { isValid: boolean; error?: string } {
     const config = BUCKET_CONFIGS[bucket];
 
     if (file.size > config.maxFileSize) {
@@ -110,7 +88,7 @@ export class StorageService {
     return { isValid: true };
   }
 
-  static getBucketConfig(bucket: StorageBucket) {
+  static getBucketConfig(bucket: StorageBucket): { maxFileSize: number; allowedTypes: string[] } {
     return BUCKET_CONFIGS[bucket];
   }
 
@@ -123,10 +101,7 @@ export class StorageService {
     return `${supabaseUrl}/storage/v1/object/public/${bucket}/${path}`;
   }
 
-  static extractPathInfo(
-    path: string,
-    bucket: StorageBucket
-  ): StoragePathOptions | null {
+  static extractPathInfo(path: string, bucket: StorageBucket): StoragePathOptions | null {
     const pathParts = path.split('/');
 
     switch (bucket) {
@@ -134,7 +109,7 @@ export class StorageService {
         if (pathParts.length >= 3 && pathParts[0] === 'categories') {
           return {
             categoryId: pathParts[1],
-            type: pathParts[2] as any,
+            type: pathParts[2] as 'product' | 'variant' | 'category',
           };
         }
         break;
@@ -144,17 +119,13 @@ export class StorageService {
         if (pathParts.length >= 3 && pathParts[0] === 'products') {
           return {
             productId: pathParts[1],
-            type: pathParts[2] as any,
+            type: pathParts[2] as 'product' | 'variant' | 'category',
           };
         }
         break;
 
       case 'variant-images':
-        if (
-          pathParts.length >= 4 &&
-          pathParts[0] === 'products' &&
-          pathParts[2] === 'variants'
-        ) {
+        if (pathParts.length >= 4 && pathParts[0] === 'products' && pathParts[2] === 'variants') {
           return {
             productId: pathParts[1],
             variantId: pathParts[3],
@@ -166,7 +137,7 @@ export class StorageService {
         if (pathParts.length >= 3 && pathParts[0] === 'ui') {
           return {
             folder: pathParts[1],
-            type: pathParts[2] as any,
+            type: pathParts[2] as 'product' | 'variant' | 'category',
           };
         }
         break;

@@ -1,9 +1,4 @@
-export type StorageBucket =
-  | 'category-images'
-  | 'product-images'
-  | 'product-gallery'
-  | 'variant-images'
-  | 'ui-assets';
+export type StorageBucket = 'category-images' | 'product-images' | 'product-gallery' | 'variant-images' | 'ui-assets';
 
 export interface BucketConfig {
   id: StorageBucket;

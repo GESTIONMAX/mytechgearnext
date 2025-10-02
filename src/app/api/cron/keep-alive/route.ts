@@ -1,11 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 /**
  * API Route Next.js pour les cron jobs de keep-alive
  * Optimisée pour Vercel Cron et GitHub Actions
  */
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<NextResponse> {
   const startTime = Date.now();
   const cronSecret = request.headers.get('authorization');
 
@@ -32,7 +33,7 @@ export async function GET(request: NextRequest) {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     // Test de connexion avec une requête simple
-    const { data, error } = await supabase.from('_keep_alive_check').select('*').limit(1);
+    const { data: _data, error } = await supabase.from('_keep_alive_check').select('*').limit(1);
 
     // Si la table n'existe pas, ping basique
     if (error && error.code === 'PGRST116') {
@@ -87,7 +88,7 @@ export async function GET(request: NextRequest) {
 /**
  * POST endpoint pour les tests de cron
  */
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   const body = await request.json();
   const { testMode = false, forceError = false } = body;
 

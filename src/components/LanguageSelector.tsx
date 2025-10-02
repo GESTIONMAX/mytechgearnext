@@ -7,14 +7,27 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useLanguage } from '@/hooks/useLanguage';
 import React from 'react';
 
-const LanguageSelector: React.FC = (): React.ReactNode => {
-  const { changeLanguage, getCurrentLanguage, getSupportedLanguages, getLanguageFlag } = useLanguage();
+const LanguageSelector: React.FC = () => {
+  // TODO: Implémenter le hook useLanguage
+  const currentLang = 'fr';
+  const supportedLanguages = {
+    fr: { name: 'Français', flag: '🇫🇷' },
+    en: { name: 'English', flag: '🇬🇧' },
+    es: { name: 'Español', flag: '🇪🇸' },
+    de: { name: 'Deutsch', flag: '🇩🇪' },
+    it: { name: 'Italiano', flag: '🇮🇹' },
+  };
 
-  const currentLang = getCurrentLanguage();
-  const supportedLanguages = getSupportedLanguages();
+  const changeLanguage = (code: string): void => {
+    // TODO: Implémenter le changement de langue
+    console.log('Changement de langue vers:', code);
+  };
+
+  const getLanguageFlag = (code: string): void => {
+    return supportedLanguages[code as keyof typeof supportedLanguages]?.flag || '🇫🇷';
+  };
 
   return (
     <DropdownMenu>

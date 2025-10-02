@@ -7,14 +7,20 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useCart } from '@/contexts/cart-context';
-import { Heart, Menu, Search, ShoppingCart, User } from 'lucide-react';
+import { Heart, LogOut, Menu, Search, ShoppingCart, User, X } from 'lucide-react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-const Header = (): React.ReactNode => {
+const Header = (): JSX.Element => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { getTotalItems } = useCart();
+  const totalItems = getTotalItems();
+
+  // TODO: Implémenter l'authentification
+  const user = null;
+  const loading = false;
+  const signOut = (): void => {};
 
   const navigation = [
     { name: 'Sport', href: '/sport' },
@@ -32,18 +38,18 @@ const Header = (): React.ReactNode => {
           <div className="flex items-center space-x-4">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="lg:hidden">
-                  <Menu className="h-6 w-6" />
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left">
-                <SheetHeader>
-                  <SheetTitle>Menu</SheetTitle>
-                  <SheetDescription>Naviguez dans notre collection</SheetDescription>
-                </SheetHeader>
-                <nav className="mt-6 space-y-4">
+              <SheetContent side="left" className="w-80">
+                <nav className="flex flex-col space-y-4 mt-8">
                   {navigation.map((item) => (
-                    <Link key={item.name} href={item.href} className="block text-lg font-medium hover:text-primary">
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-lg font-medium transition-colors hover:text-primary"
+                    >
                       {item.name}
                     </Link>
                   ))}
@@ -52,30 +58,33 @@ const Header = (): React.ReactNode => {
             </Sheet>
 
             <Link href="/" className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-600 to-purple-600" />
-              <span className="text-xl font-bold">MyTechGear</span>
+              <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-sm">MT</span>
+              </div>
+              <span className="font-merriweather font-bold text-xl text-primary">MyTechGear</span>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
+          {/* Search bar - Desktop */}
+          <div className="hidden md:flex flex-1 max-w-md mx-8">
+            <div className="relative w-full">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input
+                placeholder="Rechercher des produits..."
+                className="pl-10 pr-4 bg-muted/50 border-0 focus:bg-background transition-colors"
+              />
+            </div>
+          </div>
 
           {/* Actions */}
-          <div className="flex items-center space-x-4">
-            {/* Search */}
-            <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
+          <div className="flex items-center space-x-1">
+            {/* Search - Mobile */}
+            <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsSearchOpen(!isSearchOpen)}>
               <Search className="h-5 w-5" />
             </Button>
+
+            {/* Language Selector */}
+            <LanguageSelector />
 
             {/* Wishlist */}
             <Button variant="ghost" size="icon" asChild>
@@ -84,48 +93,87 @@ const Header = (): React.ReactNode => {
               </Link>
             </Button>
 
+            {/* Account */}
+            {!loading &&
+              (user ? (
+                <div className="flex items-center space-x-1">
+                  <span className="hidden lg:block text-sm text-muted-foreground mr-2">
+                    {user && typeof user === 'object' && 'email' in user
+                      ? (user as { email?: string }).email?.split('@')[0]
+                      : 'Utilisateur'}
+                  </span>
+                  <Button variant="ghost" size="icon" asChild title="Mon compte">
+                    <Link href="/account">
+                      <User className="h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button variant="ghost" size="icon" onClick={signOut} title="Déconnexion">
+                    <LogOut className="h-5 w-5" />
+                  </Button>
+                </div>
+              ) : (
+                <Button variant="ghost" size="icon" asChild title="Connexion">
+                  <Link href="/auth">
+                    <User className="h-5 w-5" />
+                  </Link>
+                </Button>
+              ))}
+
             {/* Cart */}
-            <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(!isCartOpen)} className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              {getTotalItems() > 0 && (
-                <Badge
-                  variant="destructive"
-                  className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
-                >
-                  {getTotalItems()}
-                </Badge>
-              )}
-            </Button>
-
-            {/* User */}
-            <Button variant="ghost" size="icon" asChild>
-              <Link href="/account">
-                <User className="h-5 w-5" />
-              </Link>
-            </Button>
-
-            {/* Language Selector */}
-            <LanguageSelector />
+            <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="relative">
+                  <ShoppingCart className="h-5 w-5" />
+                  {totalItems > 0 && (
+                    <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-accent text-accent-foreground">
+                      {totalItems > 99 ? '99+' : totalItems}
+                    </Badge>
+                  )}
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full sm:w-96">
+                <SheetHeader>
+                  <SheetTitle>Panier</SheetTitle>
+                  <SheetDescription>Articles sélectionnés pour votre commande</SheetDescription>
+                </SheetHeader>
+                <MiniCart onClose={() => setIsCartOpen(false)} />
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
 
-        {/* Search Bar */}
+        {/* Mobile search */}
         {isSearchOpen && (
-          <div className="pb-4">
+          <div className="pb-4 md:hidden">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input placeholder="Rechercher des produits..." className="pl-10" autoFocus />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input placeholder="Rechercher des produits..." className="pl-10 pr-10 bg-muted/50 border-0" />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2"
+                onClick={() => setIsSearchOpen(false)}
+              >
+                <X className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         )}
-      </div>
 
-      {/* Mini Cart */}
-      {isCartOpen && (
-        <div className="absolute right-4 top-full z-50 mt-2">
-          <MiniCart onClose={() => setIsCartOpen(false)} />
-        </div>
-      )}
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-8 pb-4">
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="text-sm font-medium transition-colors hover:text-primary relative group"
+            >
+              {item.name}
+              <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+            </Link>
+          ))}
+        </nav>
+      </div>
     </header>
   );
 };

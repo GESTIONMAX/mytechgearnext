@@ -5,7 +5,7 @@
  * Utilise les API Routes Next.js pour une meilleure intégration
  */
 
-const https = require('https');
+const _https = require('https');
 
 // Configuration
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -88,7 +88,7 @@ function startKeepAlive() {
     async () => {
       try {
         await pingViaNextJS();
-      } catch (error) {
+      } catch (_error) {
         console.log('🔄 Fallback vers ping direct Supabase...');
         await pingSupabaseDirect();
       }

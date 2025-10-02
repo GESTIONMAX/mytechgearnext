@@ -1,11 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 /**
  * API Route Next.js pour maintenir Supabase actif
  * Compatible avec Vercel Cron, GitHub Actions, et appels manuels
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest): Promise<NextResponse> {
   const startTime = Date.now();
 
   try {
@@ -27,7 +28,7 @@ export async function GET(request: NextRequest) {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     // Test de connexion avec une requête simple
-    const { data, error } = await supabase.from('_keep_alive_check').select('*').limit(1);
+    const { data: _data, error } = await supabase.from('_keep_alive_check').select('*').limit(1);
 
     // Si la table n'existe pas, on fait un ping basique
     if (error && error.code === 'PGRST116') {
@@ -80,7 +81,7 @@ export async function GET(request: NextRequest) {
 /**
  * POST endpoint pour les tests manuels
  */
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   const body = await request.json();
   const { testMode = false } = body;
 

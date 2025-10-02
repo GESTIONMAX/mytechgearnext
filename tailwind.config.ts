@@ -63,8 +63,8 @@ const config: Config = {
         inter: ['Inter', 'sans-serif'],
       },
       boxShadow: {
-        'elegant': 'var(--shadow-lg)',
-        'glow': 'var(--shadow-glow)',
+        elegant: 'var(--shadow-lg)',
+        glow: 'var(--shadow-glow)',
       },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
@@ -72,8 +72,8 @@ const config: Config = {
         'gradient-subtle': 'var(--gradient-subtle)',
       },
       transitionProperty: {
-        'smooth': 'var(--transition-smooth)',
-        'bounce': 'var(--transition-bounce)',
+        smooth: 'var(--transition-smooth)',
+        bounce: 'var(--transition-bounce)',
       },
     },
   },

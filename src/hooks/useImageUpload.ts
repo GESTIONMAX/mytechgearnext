@@ -1,22 +1,24 @@
 'use client';
 
 import { createClient } from '@/lib/supabase/client';
-import type {
-    StorageBucket,
-    StorageUploadOptions,
-    UploadedImage,
-} from '@/types/storage';
+import type { StorageBucket, StorageUploadOptions, UploadedImage } from '@/types/storage';
 import { useState } from 'react';
 
-export const useImageUpload = (bucket: StorageBucket) => {
+export const useImageUpload = (
+  bucket: StorageBucket,
+): {
+  uploadImage: (file: File, path: string) => Promise<string>;
+  uploadMultipleImages: (files: File[], path: string) => Promise<string[]>;
+  deleteImage: (path: string) => Promise<void>;
+  uploading: boolean;
+  progress: number;
+  error: Error | null;
+} => {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [compressing, setCompressing] = useState(false);
 
-  const uploadImage = async (
-    file: File,
-    options?: StorageUploadOptions
-  ): Promise<UploadedImage | null> => {
+  const uploadImage = async (file: File, options?: StorageUploadOptions): Promise<UploadedImage | null> => {
     try {
       setUploading(true);
       setCompressing(true);
@@ -31,16 +33,14 @@ export const useImageUpload = (bucket: StorageBucket) => {
 
       // Simuler le progrès d'upload
       const progressInterval = setInterval(() => {
-        setProgress(prev => Math.min(prev + 10, 90));
+        setProgress((prev) => Math.min(prev + 10, 90));
       }, 100);
 
       // Upload vers Supabase Storage
-      const { data, error } = await supabase.storage
-        .from(bucket)
-        .upload(fileName, file, {
-          cacheControl: options?.cacheControl || '3600',
-          upsert: options?.upsert || false,
-        });
+      const { data, error } = await supabase.storage.from(bucket).upload(fileName, file, {
+        cacheControl: options?.cacheControl || '3600',
+        upsert: options?.upsert || false,
+      });
 
       clearInterval(progressInterval);
 
@@ -91,10 +91,7 @@ export const useImageUpload = (bucket: StorageBucket) => {
     }
   };
 
-  const uploadMultipleImages = async (
-    files: File[],
-    options?: StorageUploadOptions
-  ): Promise<UploadedImage[]> => {
+  const uploadMultipleImages = async (files: File[], options?: StorageUploadOptions): Promise<UploadedImage[]> => {
     const results: UploadedImage[] = [];
 
     for (const file of files) {

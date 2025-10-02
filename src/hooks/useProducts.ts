@@ -1,10 +1,16 @@
 'use client';
 
 import { createClient } from '@/lib/supabase/client';
-import type { Product } from '@/types';
+import type { Product, Category } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 
-export const useProducts = () => {
+export const useProducts = (): {
+  products: Product[];
+  categories: Category[];
+  isLoading: boolean;
+  error: Error | null;
+  refetch: () => void;
+} => {
   const supabase = createClient();
 
   return useQuery({
@@ -19,7 +25,7 @@ export const useProducts = () => {
           *,
           product_images(image_url, alt_text, sort_order),
           product_variants(*)
-        `
+        `,
         )
         .eq('is_active', true)
         .order('created_at', { ascending: false });
@@ -43,11 +49,11 @@ export const useProducts = () => {
         throw categoriesError;
       }
 
-      const categoryMap = new Map(categories.map((c: any) => [c.id, c]));
+      const categoryMap = new Map(categories.map((c: { id: string; name: string }) => [c.id, c]));
 
       console.log('🏷️ Category mapping:', Object.fromEntries(categoryMap));
 
-      const transformedProducts = products.map(product => ({
+      const transformedProducts = products.map((product) => ({
         id: product.id,
         name: product.name,
         slug: product.slug,
@@ -58,38 +64,31 @@ export const useProducts = () => {
         images:
           product.product_images
             ?.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
-            ?.map(img => img.image_url) || [],
+            ?.map((img) => img.image_url) || [],
         category: categoryMap.get(product.category_id)?.name || '',
         categorySlug: categoryMap.get(product.category_id)?.slug || '',
         tags: product.tags || [],
         inStock: product.in_stock,
         stockQuantity: product.stock_quantity,
         features: product.features || [],
-        specifications:
-          (product.specifications as Record<string, string>) || {},
+        specifications: (product.specifications as Record<string, string>) || {},
         variants:
-          product.product_variants?.map(variant => ({
+          product.product_variants?.map((variant) => ({
             id: variant.id,
             name: variant.name,
             price: variant.price / 100,
-            salePrice: variant.sale_price
-              ? variant.sale_price / 100
-              : undefined,
+            salePrice: variant.sale_price ? variant.sale_price / 100 : undefined,
             inStock: variant.in_stock,
             attributes: (variant.attributes as Record<string, string>) || {},
           })) || [],
       }));
 
-      console.log(
-        '✅ Transformed products:',
-        transformedProducts.length,
-        transformedProducts
-      );
+      console.log('✅ Transformed products:', transformedProducts.length, transformedProducts);
 
       return transformedProducts;
     },
     retry: 3,
-    retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
     staleTime: 1000 * 60, // 1 minute
     gcTime: 1000 * 60 * 5, // 5 minutes
     refetchOnMount: true,
@@ -97,7 +96,14 @@ export const useProducts = () => {
   });
 };
 
-export const useProductBySlug = (slug: string) => {
+export const useProductBySlug = (
+  slug: string,
+): {
+  data: Product | null;
+  isLoading: boolean;
+  error: Error | null;
+  refetch: () => void;
+} => {
   const supabase = createClient();
 
   return useQuery({
@@ -110,7 +116,7 @@ export const useProductBySlug = (slug: string) => {
           *,
           product_images(image_url, alt_text, sort_order),
           product_variants(*)
-        `
+        `,
         )
         .eq('slug', slug)
         .eq('is_active', true)
@@ -143,22 +149,19 @@ export const useProductBySlug = (slug: string) => {
         images:
           product.product_images
             ?.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
-            ?.map(img => img.image_url) || [],
+            ?.map((img) => img.image_url) || [],
         category: (category?.name as string) || '',
         tags: product.tags || [],
         inStock: product.in_stock,
         stockQuantity: product.stock_quantity,
         features: product.features || [],
-        specifications:
-          (product.specifications as Record<string, string>) || {},
+        specifications: (product.specifications as Record<string, string>) || {},
         variants:
-          product.product_variants?.map(variant => ({
+          product.product_variants?.map((variant) => ({
             id: variant.id,
             name: variant.name,
             price: variant.price / 100,
-            salePrice: variant.sale_price
-              ? variant.sale_price / 100
-              : undefined,
+            salePrice: variant.sale_price ? variant.sale_price / 100 : undefined,
             inStock: variant.in_stock,
             attributes: (variant.attributes as Record<string, string>) || {},
           })) || [],
@@ -167,7 +170,12 @@ export const useProductBySlug = (slug: string) => {
   });
 };
 
-export const useCategories = () => {
+export const useCategories = (): {
+  data: Category[];
+  isLoading: boolean;
+  error: Error | null;
+  refetch: () => void;
+} => {
   const supabase = createClient();
 
   return useQuery({
@@ -181,7 +189,7 @@ export const useCategories = () => {
 
       if (error) throw error;
 
-      return categories.map(category => ({
+      return categories.map((category) => ({
         id: category.id,
         name: category.name,
         slug: category.slug,
