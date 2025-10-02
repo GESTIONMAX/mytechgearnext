@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MyTechGear - Next.js Project
 
-## Getting Started
+Un projet Next.js moderne avec TypeScript, Tailwind CSS et une configuration de qualité du code optimisée.
 
-First, run the development server:
+## 🚀 Technologies
+
+- **Next.js 15** avec App Router
+- **TypeScript** en mode strict
+- **Tailwind CSS** pour le styling
+- **ESLint** avec règles strictes
+- **Prettier** pour le formatage
+- **Turbopack** pour le développement rapide
+
+## 🛠️ Configuration Qualité
+
+### TypeScript Strict Mode
+
+- `noImplicitAny`: true
+- `noUnusedLocals`: true
+- `noUnusedParameters`: true
+- `exactOptionalPropertyTypes`: true
+- `noImplicitReturns`: true
+- `noFallthroughCasesInSwitch`: true
+
+### ESLint Rules
+
+- Interdiction des types `any`
+- Types de retour explicites
+- Imports de types cohérents
+- Variables non utilisées interdites
+- Console.log en warning
+
+### Prettier
+
+- Single quotes
+- Trailing commas
+- Print width: 120
+- Tab width: 2
+
+## 📦 Scripts Disponibles
 
 ```bash
+# Développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build
+npm run build
+
+# Production
+npm run start
+
+# Qualité du code
+npm run lint          # Linter
+npm run lint:fix      # Corriger automatiquement
+npm run lint:check    # Vérifier sans warnings
+npm run format        # Formater avec Prettier
+npm run format:check  # Vérifier le formatage
+npm run type-check    # Vérifier TypeScript
+npm run check-all     # Tout vérifier
+npm run fix-all       # Tout corriger
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Prochaines Étapes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Configuration Strapi** pour le CMS
+2. **Migration des données** depuis Supabase
+3. **Intégration Prisma** pour l'ORM
+4. **Développement des composants** UI
+5. **Tests** et déploiement
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Structure du Projet
 
-## Learn More
+```
+src/
+├── app/                 # App Router Next.js
+│   ├── layout.tsx      # Layout principal
+│   ├── page.tsx        # Page d'accueil
+│   └── globals.css     # Styles globaux
+├── components/          # Composants réutilisables
+├── lib/                # Utilitaires
+└── types/              # Types TypeScript
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Configuration VS Code
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Le projet inclut une configuration VS Code optimisée :
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Formatage automatique à la sauvegarde
+- ESLint intégré
+- Extensions recommandées
+- IntelliSense TypeScript
 
-## Deploy on Vercel
+## 🚀 Démarrage Rapide
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Installation
+npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Développement
+npm run dev
+
+# Vérification qualité
+npm run check-all
+```
+
+## 📚 Documentation
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [ESLint Rules](https://eslint.org/docs/rules)
