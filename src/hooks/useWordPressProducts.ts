@@ -111,8 +111,9 @@ export const useWordPressProducts = (): UseWordPressProductsReturn => {
         const categoriesData = await categoriesResponse.json();
         setCategories(categoriesData);
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Erreur inconnue lors de la récupération des produits';
+      setError(errorMessage);
       console.error('Erreur récupération produits WordPress:', err);
     } finally {
       setIsLoading(false);
