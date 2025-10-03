@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-10-03T13:21:28.971Z",
+  "config": {
+    "wordpress_url": "https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com",
+    "dry_run": false,
+    "batch_size": 50
+  },
+  "stats": {
+    "products": {
+      "imported": 9,
+      "errors": 0,
+      "skipped": 0
+    },
+    "categories": {
+      "imported": 4,
+      "errors": 0,
+      "skipped": 0
+    },
+    "variations": {
+      "imported": 16,
+      "errors": 0,
+      "skipped": 0
+    },
+    "attributes": {
+      "imported": 5,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "summary": {
+    "total_imported": 34,
+    "total_errors": 0,
+    "total_skipped": 0
+  }
+}

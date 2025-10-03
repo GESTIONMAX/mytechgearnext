@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Couleur Monture",
+    "slug": "pa_couleur-monture",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": false,
+    "imported_at": "2025-10-03T13:21:25.328Z"
+  },
+  {
+    "id": 2,
+    "name": "Couleur Verre",
+    "slug": "pa_couleur-verre",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": false,
+    "imported_at": "2025-10-03T13:21:25.328Z"
+  },
+  {
+    "id": 3,
+    "name": "Option Audio",
+    "slug": "pa_option-audio",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": false,
+    "imported_at": "2025-10-03T13:21:25.328Z"
+  },
+  {
+    "id": 4,
+    "name": "Protection UV",
+    "slug": "pa_protection-uv",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": false,
+    "imported_at": "2025-10-03T13:21:25.328Z"
+  },
+  {
+    "id": 6,
+    "name": "Type de verre",
+    "slug": "pa_type-de-verre",
+    "type": "select",
+    "order_by": "menu_order",
+    "has_archives": false,
+    "imported_at": "2025-10-03T13:21:25.328Z"
+  }
+]

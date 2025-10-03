@@ -1,0 +1,46 @@
+[
+  {
+    "id": 17,
+    "name": "Lifestyle",
+    "slug": "lifestyle",
+    "description": "Design élégant, usage citadin moderne et tendance",
+    "parent": 0,
+    "count": 0,
+    "image": null,
+    "menu_order": 0,
+    "imported_at": "2025-10-03T13:21:25.148Z"
+  },
+  {
+    "id": 15,
+    "name": "Non classé",
+    "slug": "non-classe",
+    "description": "",
+    "parent": 0,
+    "count": 0,
+    "image": null,
+    "menu_order": 0,
+    "imported_at": "2025-10-03T13:21:25.148Z"
+  },
+  {
+    "id": 18,
+    "name": "Prismatic",
+    "slug": "prismatic",
+    "description": "Technologie de verres à couleur réglable, adaptable à tous les environnements",
+    "parent": 0,
+    "count": 2,
+    "image": null,
+    "menu_order": 0,
+    "imported_at": "2025-10-03T13:21:25.148Z"
+  },
+  {
+    "id": 16,
+    "name": "Sport",
+    "slug": "sport",
+    "description": " Performance et usages sportifs, notamment pour cyclistes et sportifs outdoor",
+    "parent": 0,
+    "count": 6,
+    "image": null,
+    "menu_order": 0,
+    "imported_at": "2025-10-03T13:21:25.148Z"
+  }
+]

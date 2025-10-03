@@ -1,0 +1,132 @@
+{
+  "timestamp": "2025-10-03T13:22:35.564Z",
+  "config": {
+    "dry_run": false,
+    "generate_skus": true,
+    "create_relations": true,
+    "format_for_ui": true
+  },
+  "stats": {
+    "products": {
+      "mapped": 9,
+      "errors": 0
+    },
+    "variations": {
+      "mapped": 16,
+      "errors": 0
+    },
+    "skus": {
+      "generated": 16,
+      "errors": 0
+    },
+    "relations": {
+      "created": 1,
+      "errors": 0
+    }
+  },
+  "summary": {
+    "total_products_mapped": 9,
+    "total_variations_mapped": 16,
+    "total_skus_generated": 16,
+    "total_relations_created": 1,
+    "total_errors": 0
+  },
+  "attribute_mapping": {
+    "audio": {
+      "avec-audio": {
+        "label": "Avec audio",
+        "color": "#e3f2fd",
+        "value": "avec-audio"
+      },
+      "sans-audio": {
+        "label": "Sans audio",
+        "color": "#fce4ec",
+        "value": "sans-audio"
+      }
+    },
+    "frame_color": {
+      "blanc": {
+        "label": "Blanc",
+        "color": "#ffffff",
+        "value": "blanc"
+      },
+      "noir-mat": {
+        "label": "Noir Mat",
+        "color": "#424242",
+        "value": "noir-mat"
+      },
+      "bleu": {
+        "label": "Bleu",
+        "color": "#2196f3",
+        "value": "bleu"
+      },
+      "obsidian": {
+        "label": "Obsidian",
+        "color": "#212121",
+        "value": "obsidian"
+      },
+      "neon": {
+        "label": "Neon",
+        "color": "#00e676",
+        "value": "neon"
+      },
+      "black-gold": {
+        "label": "Black Gold",
+        "color": "#ffd700",
+        "value": "black-gold"
+      },
+      "gold": {
+        "label": "Gold",
+        "color": "#ffc107",
+        "value": "gold"
+      }
+    },
+    "lens_color": {
+      "rouge": {
+        "label": "Rouge",
+        "color": "#f44336",
+        "value": "rouge"
+      },
+      "bleu": {
+        "label": "Bleu",
+        "color": "#2196f3",
+        "value": "bleu"
+      },
+      "fire": {
+        "label": "Fire",
+        "color": "#ff5722",
+        "value": "fire"
+      },
+      "alpha-purple": {
+        "label": "Alpha Purple",
+        "color": "#9c27b0",
+        "value": "alpha-purple"
+      },
+      "alpha-blue": {
+        "label": "Alpha Blue",
+        "color": "#3f51b5",
+        "value": "alpha-blue"
+      },
+      "smoke": {
+        "label": "Smoke",
+        "color": "#607d8b",
+        "value": "smoke"
+      },
+      "smoke-lenses": {
+        "label": "Smoke Lenses",
+        "color": "#78909c",
+        "value": "smoke-lenses"
+      },
+      "calm-lenses": {
+        "label": "Calm Lenses",
+        "color": "#b0bec5",
+        "value": "calm-lenses"
+      },
+      "rose": {
+        "label": "Rose",
+        "color": "#e91e63",
+        "value": "rose"
+      }
+    }
+  }
+}

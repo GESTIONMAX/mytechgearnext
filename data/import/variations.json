@@ -1,0 +1,530 @@
+[
+  {
+    "id": 113,
+    "product_id": 111,
+    "product_name": "Euphoria",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:32",
+    "date_modified": "2025-10-03T15:20:32",
+    "imported_at": "2025-10-03T13:21:26.502Z"
+  },
+  {
+    "id": 112,
+    "product_id": 111,
+    "product_name": "Euphoria",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:30",
+    "date_modified": "2025-10-03T15:20:30",
+    "imported_at": "2025-10-03T13:21:26.502Z"
+  },
+  {
+    "id": 110,
+    "product_id": 108,
+    "product_name": "Aura",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:26",
+    "date_modified": "2025-10-03T15:20:26",
+    "imported_at": "2025-10-03T13:21:26.794Z"
+  },
+  {
+    "id": 109,
+    "product_id": 108,
+    "product_name": "Aura",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:24",
+    "date_modified": "2025-10-03T15:20:24",
+    "imported_at": "2025-10-03T13:21:26.794Z"
+  },
+  {
+    "id": 107,
+    "product_id": 105,
+    "product_name": "Dragon",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:21",
+    "date_modified": "2025-10-03T15:20:21",
+    "imported_at": "2025-10-03T13:21:27.093Z"
+  },
+  {
+    "id": 106,
+    "product_id": 105,
+    "product_name": "Dragon",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:20",
+    "date_modified": "2025-10-03T15:20:20",
+    "imported_at": "2025-10-03T13:21:27.093Z"
+  },
+  {
+    "id": 104,
+    "product_id": 102,
+    "product_name": "Duck Classic",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:17",
+    "date_modified": "2025-10-03T15:20:17",
+    "imported_at": "2025-10-03T13:21:27.408Z"
+  },
+  {
+    "id": 103,
+    "product_id": 102,
+    "product_name": "Duck Classic",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:15",
+    "date_modified": "2025-10-03T15:20:15",
+    "imported_at": "2025-10-03T13:21:27.408Z"
+  },
+  {
+    "id": 101,
+    "product_id": 99,
+    "product_name": "Prime",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:12",
+    "date_modified": "2025-10-03T15:20:12",
+    "imported_at": "2025-10-03T13:21:27.703Z"
+  },
+  {
+    "id": 100,
+    "product_id": 99,
+    "product_name": "Prime",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:11",
+    "date_modified": "2025-10-03T15:20:11",
+    "imported_at": "2025-10-03T13:21:27.704Z"
+  },
+  {
+    "id": 98,
+    "product_id": 96,
+    "product_name": "Shield",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:08",
+    "date_modified": "2025-10-03T15:20:08",
+    "imported_at": "2025-10-03T13:21:27.997Z"
+  },
+  {
+    "id": 97,
+    "product_id": 96,
+    "product_name": "Shield",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": null,
+    "attributes": [],
+    "status": "publish",
+    "date_created": "2025-10-03T15:20:06",
+    "date_modified": "2025-10-03T15:20:06",
+    "imported_at": "2025-10-03T13:21:27.997Z"
+  },
+  {
+    "id": 82,
+    "product_id": 64,
+    "product_name": "Music Shield audio : Lunettes de soleil de sport à teinte réglable avec audio intégré",
+    "sku": "SPR-MSH-NBM-BLU-AUDIO",
+    "price": "249",
+    "regular_price": "249",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": {
+      "id": 73,
+      "date_created": "2025-10-03T13:08:34",
+      "date_created_gmt": "2025-10-03T09:08:34",
+      "date_modified": "2025-10-03T13:08:34",
+      "date_modified_gmt": "2025-10-03T09:08:34",
+      "src": "https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1.png",
+      "name": "main-1",
+      "alt": ""
+    },
+    "attributes": [
+      {
+        "id": 1,
+        "name": "Couleur Monture",
+        "slug": "pa_couleur-monture",
+        "option": "Monture Noir Mat"
+      },
+      {
+        "id": 2,
+        "name": "Couleur Verre",
+        "slug": "pa_couleur-verre",
+        "option": "Verres Fire"
+      },
+      {
+        "id": 3,
+        "name": "Option Audio",
+        "slug": "pa_option-audio",
+        "option": "Oui"
+      },
+      {
+        "id": 6,
+        "name": "Type de verre",
+        "slug": "pa_type-de-verre",
+        "option": "Oui"
+      },
+      {
+        "id": 4,
+        "name": "Protection UV",
+        "slug": "pa_protection-uv",
+        "option": "Oui"
+      }
+    ],
+    "status": "publish",
+    "date_created": "2025-10-03T11:53:38",
+    "date_modified": "2025-10-03T12:01:35",
+    "imported_at": "2025-10-03T13:21:28.868Z"
+  },
+  {
+    "id": 81,
+    "product_id": 64,
+    "product_name": "Music Shield audio : Lunettes de soleil de sport à teinte réglable avec audio intégré",
+    "sku": "",
+    "price": "249",
+    "regular_price": "249",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": {
+      "id": 73,
+      "date_created": "2025-10-03T13:08:34",
+      "date_created_gmt": "2025-10-03T09:08:34",
+      "date_modified": "2025-10-03T13:08:34",
+      "date_modified_gmt": "2025-10-03T09:08:34",
+      "src": "https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1.png",
+      "name": "main-1",
+      "alt": ""
+    },
+    "attributes": [
+      {
+        "id": 1,
+        "name": "Couleur Monture",
+        "slug": "pa_couleur-monture",
+        "option": "Monture Noir Mat"
+      },
+      {
+        "id": 2,
+        "name": "Couleur Verre",
+        "slug": "pa_couleur-verre",
+        "option": "Verres Bleus"
+      },
+      {
+        "id": 3,
+        "name": "Option Audio",
+        "slug": "pa_option-audio",
+        "option": "Oui"
+      },
+      {
+        "id": 6,
+        "name": "Type de verre",
+        "slug": "pa_type-de-verre",
+        "option": "Oui"
+      },
+      {
+        "id": 4,
+        "name": "Protection UV",
+        "slug": "pa_protection-uv",
+        "option": "Oui"
+      }
+    ],
+    "status": "publish",
+    "date_created": "2025-10-03T11:53:38",
+    "date_modified": "2025-10-03T12:03:14",
+    "imported_at": "2025-10-03T13:21:28.868Z"
+  },
+  {
+    "id": 80,
+    "product_id": 64,
+    "product_name": "Music Shield audio : Lunettes de soleil de sport à teinte réglable avec audio intégré",
+    "sku": "SPR-MSH-NBM-FIR-AUDIO",
+    "price": "249",
+    "regular_price": "249",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": {
+      "id": 73,
+      "date_created": "2025-10-03T13:08:34",
+      "date_created_gmt": "2025-10-03T09:08:34",
+      "date_modified": "2025-10-03T13:08:34",
+      "date_modified_gmt": "2025-10-03T09:08:34",
+      "src": "https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1.png",
+      "name": "main-1",
+      "alt": ""
+    },
+    "attributes": [
+      {
+        "id": 1,
+        "name": "Couleur Monture",
+        "slug": "pa_couleur-monture",
+        "option": "Monture Blanche"
+      },
+      {
+        "id": 2,
+        "name": "Couleur Verre",
+        "slug": "pa_couleur-verre",
+        "option": "Verres Rouges"
+      },
+      {
+        "id": 3,
+        "name": "Option Audio",
+        "slug": "pa_option-audio",
+        "option": "Oui"
+      },
+      {
+        "id": 6,
+        "name": "Type de verre",
+        "slug": "pa_type-de-verre",
+        "option": "Oui"
+      },
+      {
+        "id": 4,
+        "name": "Protection UV",
+        "slug": "pa_protection-uv",
+        "option": "Oui"
+      }
+    ],
+    "status": "publish",
+    "date_created": "2025-10-03T11:53:38",
+    "date_modified": "2025-10-03T12:01:20",
+    "imported_at": "2025-10-03T13:21:28.868Z"
+  },
+  {
+    "id": 78,
+    "product_id": 64,
+    "product_name": "Music Shield audio : Lunettes de soleil de sport à teinte réglable avec audio intégré",
+    "sku": "SPR-MSH-BLC-BLU-AUDIO",
+    "price": "249",
+    "regular_price": "249",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "image": {
+      "id": 73,
+      "date_created": "2025-10-03T13:08:34",
+      "date_created_gmt": "2025-10-03T09:08:34",
+      "date_modified": "2025-10-03T13:08:34",
+      "date_modified_gmt": "2025-10-03T09:08:34",
+      "src": "https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1.png",
+      "name": "main-1",
+      "alt": ""
+    },
+    "attributes": [
+      {
+        "id": 1,
+        "name": "Couleur Monture",
+        "slug": "pa_couleur-monture",
+        "option": "Monture Blanche"
+      },
+      {
+        "id": 2,
+        "name": "Couleur Verre",
+        "slug": "pa_couleur-verre",
+        "option": "Verres Bleus"
+      },
+      {
+        "id": 3,
+        "name": "Option Audio",
+        "slug": "pa_option-audio",
+        "option": "Oui"
+      },
+      {
+        "id": 6,
+        "name": "Type de verre",
+        "slug": "pa_type-de-verre",
+        "option": "Oui"
+      },
+      {
+        "id": 4,
+        "name": "Protection UV",
+        "slug": "pa_protection-uv",
+        "option": "Oui"
+      }
+    ],
+    "status": "publish",
+    "date_created": "2025-10-03T11:53:37",
+    "date_modified": "2025-10-03T12:01:20",
+    "imported_at": "2025-10-03T13:21:28.868Z"
+  }
+]

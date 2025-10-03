@@ -1,0 +1,334 @@
+[
+  {
+    "id": 111,
+    "name": "Euphoria",
+    "slug": "euphoria",
+    "description": "<p>Sublimez votre look avec Euphoria, les lunettes de soleil avec verres à couleur réglable. Dotées de verres Prismatic™ à changement de couleur</p>\n",
+    "short_description": "",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "categories": [
+      {
+        "id": 18,
+        "name": "Prismatic",
+        "slug": "prismatic"
+      }
+    ],
+    "tags": [],
+    "images": [],
+    "type": "variable",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "date_created": "2025-10-03T15:20:29",
+    "date_modified": "2025-10-03T15:20:32",
+    "imported_at": "2025-10-03T13:21:25.957Z",
+    "mapped_at": "2025-10-03T13:22:35.557Z"
+  },
+  {
+    "id": 108,
+    "name": "Aura",
+    "slug": "aura",
+    "description": "<p>Lunettes de soleil rétro avec verres Prismatic™ à changement de couleur</p>\n",
+    "short_description": "",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "categories": [
+      {
+        "id": 18,
+        "name": "Prismatic",
+        "slug": "prismatic"
+      }
+    ],
+    "tags": [],
+    "images": [],
+    "type": "variable",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "date_created": "2025-10-03T15:20:23",
+    "date_modified": "2025-10-03T15:20:26",
+    "imported_at": "2025-10-03T13:21:25.958Z",
+    "mapped_at": "2025-10-03T13:22:35.557Z"
+  },
+  {
+    "id": 105,
+    "name": "Dragon",
+    "slug": "dragon",
+    "description": "<p>Lunettes adaptatives avec verres à cristaux liquides intelligents</p>\n",
+    "short_description": "",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "categories": [
+      {
+        "id": 16,
+        "name": "Sport",
+        "slug": "sport"
+      }
+    ],
+    "tags": [],
+    "images": [],
+    "type": "variable",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "date_created": "2025-10-03T15:20:19",
+    "date_modified": "2025-10-03T15:20:21",
+    "imported_at": "2025-10-03T13:21:25.958Z",
+    "mapped_at": "2025-10-03T13:22:35.557Z"
+  },
+  {
+    "id": 102,
+    "name": "Duck Classic",
+    "slug": "duck-classic",
+    "description": "<p>Lunettes de soleil intelligentes à teinte réglable et compatibles avec une application avec audio intégré</p>\n",
+    "short_description": "",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "categories": [
+      {
+        "id": 16,
+        "name": "Sport",
+        "slug": "sport"
+      }
+    ],
+    "tags": [],
+    "images": [],
+    "type": "variable",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "date_created": "2025-10-03T15:20:14",
+    "date_modified": "2025-10-03T15:20:17",
+    "imported_at": "2025-10-03T13:21:25.958Z",
+    "mapped_at": "2025-10-03T13:22:35.557Z"
+  },
+  {
+    "id": 99,
+    "name": "Prime",
+    "slug": "prime",
+    "description": "<p>Lunettes de soleil classiques avec réglage manuel et automatique de la teinte</p>\n",
+    "short_description": "",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "categories": [
+      {
+        "id": 16,
+        "name": "Sport",
+        "slug": "sport"
+      }
+    ],
+    "tags": [],
+    "images": [],
+    "type": "variable",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "date_created": "2025-10-03T15:20:11",
+    "date_modified": "2025-10-03T15:20:12",
+    "imported_at": "2025-10-03T13:21:25.958Z",
+    "mapped_at": "2025-10-03T13:22:35.557Z"
+  },
+  {
+    "id": 96,
+    "name": "Shield",
+    "slug": "shield",
+    "description": "<p>Lunettes de soleil de sport nouvelle génération avec réglage à double teinte</p>\n",
+    "short_description": "",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "categories": [
+      {
+        "id": 16,
+        "name": "Sport",
+        "slug": "sport"
+      }
+    ],
+    "tags": [],
+    "images": [],
+    "type": "variable",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "date_created": "2025-10-03T15:20:04",
+    "date_modified": "2025-10-03T15:20:08",
+    "imported_at": "2025-10-03T13:21:25.958Z",
+    "mapped_at": "2025-10-03T13:22:35.557Z"
+  },
+  {
+    "id": 90,
+    "name": "Falcon Lunettes de soleil performantes avec réglage automatique de la teinte",
+    "slug": "__trashed",
+    "description": "",
+    "short_description": "",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": null,
+    "stock_status": "outofstock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "categories": [],
+    "tags": [],
+    "images": [],
+    "type": "variable",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "date_created": "2025-10-03T14:51:38",
+    "date_modified": "2025-10-03T15:15:49",
+    "imported_at": "2025-10-03T13:21:25.958Z",
+    "mapped_at": "2025-10-03T13:22:35.557Z"
+  },
+  {
+    "id": 87,
+    "name": "Lunettes de soleil performantes avec réglage automatique de la teinte",
+    "slug": "lunettes-de-soleil-performantes-avec-reglage-automatique-de-la-teinte",
+    "description": "<p>Lunettes de soleil performantes avec réglage automatique de la teinte</p>\n",
+    "short_description": "",
+    "sku": "",
+    "price": "",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": null,
+    "stock_status": "outofstock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "categories": [
+      {
+        "id": 16,
+        "name": "Sport",
+        "slug": "sport"
+      }
+    ],
+    "tags": [],
+    "images": [],
+    "type": "variable",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "date_created": "2025-10-03T14:46:31",
+    "date_modified": "2025-10-03T15:15:51",
+    "imported_at": "2025-10-03T13:21:25.958Z",
+    "mapped_at": "2025-10-03T13:22:35.557Z"
+  },
+  {
+    "id": 64,
+    "name": "Music Shield audio : Lunettes de soleil de sport à teinte réglable avec audio intégré",
+    "slug": "music-shield-audio-lunettes-de-soleil-de-sport-a-teinte-reglable-avec-audio-integre",
+    "description": "<p>Lunettes de soleil de sport à teinte réglable avec audio intégré</p>\n",
+    "short_description": "<p>Lunettes de soleil de sport à teinte réglable avec audio intégré</p>\n",
+    "sku": "",
+    "price": "249",
+    "regular_price": "",
+    "sale_price": "",
+    "stock_quantity": 10,
+    "stock_status": "instock",
+    "weight": "",
+    "dimensions": {
+      "length": "",
+      "width": "",
+      "height": ""
+    },
+    "categories": [
+      {
+        "id": 16,
+        "name": "Sport",
+        "slug": "sport"
+      }
+    ],
+    "tags": [],
+    "images": [
+      {
+        "id": 73,
+        "date_created": "2025-10-03T13:08:34",
+        "date_created_gmt": "2025-10-03T09:08:34",
+        "date_modified": "2025-10-03T13:08:34",
+        "date_modified_gmt": "2025-10-03T09:08:34",
+        "src": "https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1.png",
+        "name": "main-1",
+        "alt": "",
+        "srcset": "https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1.png 1800w, https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1-300x300.png 300w, https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1-1024x1024.png 1024w, https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1-150x150.png 150w, https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1-768x768.png 768w, https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1-1536x1536.png 1536w, https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1-800x800.png 800w, https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1-600x600.png 600w, https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1-100x100.png 100w",
+        "sizes": "(max-width: 1800px) 100vw, 1800px",
+        "thumbnail": "https://wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com/wp-content/uploads/2025/10/main-1-300x300.png"
+      }
+    ],
+    "type": "variable",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "date_created": "2025-10-03T10:44:16",
+    "date_modified": "2025-10-03T12:45:36",
+    "imported_at": "2025-10-03T13:21:25.958Z",
+    "mapped_at": "2025-10-03T13:22:35.557Z"
+  }
+]
