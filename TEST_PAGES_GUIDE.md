@@ -29,18 +29,21 @@
   - ✅ Validation des options d'interface
   - ✅ Comparaison des méthodes de sélection
 
-### **10. 🛒 Test Gestion du Panier**
+### **⭐ 10. 🛒 Test Gestion du Panier (RECOMMANDÉ)**
 
 **URL :** `http://localhost:3000/test-cart-management`
 
 - **Fonction :** Test des fonctionnalités de gestion du panier
 - **Fonctionnalités :**
   - ✅ Ajout de produits au panier
-  - ✅ Modification des quantités (+ et -)
+  - ✅ Modification des quantités (sélecteur)
   - ✅ Suppression d'articles individuels
   - ✅ Vider le panier complètement
   - ✅ Ouverture du drawer du panier
   - ✅ Tests de régression de la gestion
+  - ⭐ **TEST EN CONTEXTE RÉEL** : Workflow complet
+  - ⭐ **DONNÉES WORDPRESS** : Produits authentiques
+  - ⭐ **INTERFACE REPRÉSENTATIVE** : Design de production
 
 ### **9. 🛒 Test Parcours Checkout**
 
