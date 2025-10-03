@@ -2,12 +2,12 @@
 
 import { ProductGrid } from '@/components/ProductGrid';
 import { ProductFilters } from '@/components/ProductFilters';
-import { SupabaseTest } from '@/components/SupabaseTest';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useProducts } from '@/hooks/useSupabaseProducts';
 import { Grid, List, Search } from 'lucide-react';
 import { useState } from 'react';
+import type { ProductWithDetails, ProductVariantWithDetails } from '@/types';
 
 export default function ProductsPage(): React.JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
@@ -28,23 +28,20 @@ export default function ProductsPage(): React.JSX.Element {
     setFilters((prev) => ({ ...prev, search: value }));
   };
 
-  const handleFiltersChange = (newFilters: any): void => {
+  const handleFiltersChange = (newFilters: Record<string, unknown>): void => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   };
 
-  const handleAddToCart = (product: any, variant?: any): void => {
+  const handleAddToCart = (_product: ProductWithDetails, _variant?: ProductVariantWithDetails): void => {
     // TODO: Implement add to cart functionality
-    console.log('Add to cart:', product, variant);
   };
 
-  const handleToggleWishlist = (product: any): void => {
+  const handleToggleWishlist = (_product: ProductWithDetails): void => {
     // TODO: Implement wishlist functionality
-    console.log('Toggle wishlist:', product);
   };
 
-  const handleQuickView = (product: any): void => {
+  const handleQuickView = (_product: ProductWithDetails): void => {
     // TODO: Implement quick view functionality
-    console.log('Quick view:', product);
   };
 
   if (error) {
@@ -61,11 +58,6 @@ export default function ProductsPage(): React.JSX.Element {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-8 text-4xl font-bold">Nos Produits</h1>
-
-      {/* Test de connexion Supabase */}
-      <div className="mb-8">
-        <SupabaseTest />
-      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Filters Sidebar */}

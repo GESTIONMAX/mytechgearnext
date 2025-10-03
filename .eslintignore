@@ -1,0 +1,20 @@
+# Scripts de migration et seeding (non critiques)
+scripts/
+*.js
+
+# Dossiers de build
+.next/
+out/
+dist/
+build/
+
+# Dossiers de dépendances
+node_modules/
+
+# Fichiers de configuration
+*.config.js
+*.config.mjs
+
+# Fichiers temporaires
+*.tmp
+*.temp

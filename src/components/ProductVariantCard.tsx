@@ -92,7 +92,7 @@ export const ProductVariantCard: React.FC<ProductVariantCardProps> = ({
           url: `${window.location.origin}/product/${product.slug}?variant=${variant.id}`,
         })
         .catch((error) => {
-          console.error('Erreur lors du partage:', error);
+          logger.error('Erreur lors du partage', error);
         });
     } else {
       // Fallback: copier le lien dans le presse-papiers
@@ -102,7 +102,7 @@ export const ProductVariantCard: React.FC<ProductVariantCardProps> = ({
           alert('Lien copié dans le presse-papiers !');
         })
         .catch((error) => {
-          console.error('Erreur lors de la copie:', error);
+          logger.error('Erreur lors de la copie', error);
         });
     }
   };

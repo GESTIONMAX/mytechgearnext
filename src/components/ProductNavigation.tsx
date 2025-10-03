@@ -20,7 +20,7 @@ export const ProductNavigation: React.FC<ProductNavigationProps> = ({
   showFilters = false,
 }) => {
   const pathname = usePathname();
-  const { data: categories, isLoading } = useCategories();
+  const { data: categories } = useCategories();
 
   const isActive = (path: string): boolean => {
     return pathname === path;

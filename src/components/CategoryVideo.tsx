@@ -69,7 +69,7 @@ const CategoryVideo: React.FC<CategoryVideoProps> = ({ category }) => {
                   className="bg-white/90 text-black hover:bg-white shadow-lg"
                   onClick={() => {
                     // TODO: Implement video modal or redirect
-                    console.log('Play video');
+                    // TODO: Implement video play functionality
                   }}
                 >
                   <Play className="h-6 w-6 mr-2" />

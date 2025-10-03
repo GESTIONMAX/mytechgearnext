@@ -7,6 +7,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ArrowLeft, Home } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import type { ProductWithDetails, ProductVariantWithDetails } from '@/types';
 
 export default function ProductDetailPage(): React.JSX.Element {
   const params = useParams();
@@ -15,17 +16,19 @@ export default function ProductDetailPage(): React.JSX.Element {
   const { data: product, isLoading, error } = useProductBySlug(slug);
   const { data: similarProducts } = useSimilarProducts(product?.id || '', product?.category_id || '', 4);
 
-  const handleAddToCart = (product: any, quantity: number, variant?: any): void => {
-    console.log('Add to cart:', { product, quantity, variant });
+  const handleAddToCart = (
+    _product: ProductWithDetails,
+    _quantity: number,
+    _variant?: ProductVariantWithDetails,
+  ): void => {
     // TODO: Implement add to cart functionality
   };
 
-  const handleToggleWishlist = (product: any): void => {
-    console.log('Toggle wishlist:', product);
+  const handleToggleWishlist = (_product: ProductWithDetails): void => {
     // TODO: Implement wishlist functionality
   };
 
-  const handleShare = (product: any): void => {
+  const handleShare = (product: ProductWithDetails): void => {
     if (navigator.share) {
       navigator.share({
         title: product.name,

@@ -1,11 +1,11 @@
 'use client';
 
 import { ProductVariantCard } from '@/components/ProductVariantCard';
-import type { ProductWithDetails } from '@/services/productService';
+import type { ProductWithDetails, ProductVariantWithDetails } from '@/types';
 
 interface ProductVariantsGridProps {
   product: ProductWithDetails;
-  onAddToCart?: (product: ProductWithDetails, variant: any) => void;
+  onAddToCart?: (product: ProductWithDetails, variant: ProductVariantWithDetails) => void;
   onToggleWishlist?: (product: ProductWithDetails) => void;
   onQuickView?: (product: ProductWithDetails) => void;
   showActions?: boolean;

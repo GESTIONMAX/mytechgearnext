@@ -1,11 +1,8 @@
 import { createClient } from '@/lib/supabase/client';
-import type { Database } from '@/lib/supabase/types';
+// import type { Database } from '@/lib/supabase/types'; // Non utilisé
 import type { ProductWithDetails } from '@/types';
 
-type Product = Database['public']['Tables']['products']['Row'];
-type ProductVariant = Database['public']['Tables']['product_variants']['Row'];
-type ProductImage = Database['public']['Tables']['product_images']['Row'];
-type Category = Database['public']['Tables']['categories']['Row'];
+// Types Supabase - non utilisés directement, on utilise les types de /types/index.ts
 
 // Utilise les types définis dans /types/index.ts
 

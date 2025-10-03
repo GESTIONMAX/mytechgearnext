@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
+import { logger } from '@/lib/logger';
 
 /**
  * API Route Next.js pour maintenir Supabase actif
@@ -62,7 +63,7 @@ export async function GET(_request: NextRequest): Promise<NextResponse> {
   } catch (error) {
     const duration = Date.now() - startTime;
 
-    console.error('Keep-alive error:', error);
+    logger.error('Keep-alive error', error);
 
     return NextResponse.json(
       {

@@ -6,14 +6,12 @@ import { Separator } from '@/components/ui/separator';
 import { ProductVariantsGrid } from '@/components/ProductVariantsGrid';
 import { ProductVariantSelector } from '@/components/ProductVariantSelector';
 import {
-  Star,
   ShoppingCart,
   Heart,
   Share2,
   Truck,
   Shield,
   RotateCcw,
-  CheckCircle,
   Minus,
   Plus,
   Zap,
@@ -25,13 +23,12 @@ import {
   Star as StarIcon,
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
-import type { ProductWithDetails } from '@/services/productService';
+import type { ProductWithDetails, ProductVariantWithDetails } from '@/types';
 
 interface ProductCardDetailsProps {
   product: ProductWithDetails;
-  onAddToCart?: (product: ProductWithDetails, quantity: number, variant?: any) => void;
+  onAddToCart?: (product: ProductWithDetails, quantity: number, variant?: ProductVariantWithDetails) => void;
   onToggleWishlist?: (product: ProductWithDetails) => void;
   onShare?: (product: ProductWithDetails) => void;
 }
@@ -108,7 +105,7 @@ export const ProductCardDetails: React.FC<ProductCardDetailsProps> = ({
 
   const handleQuickView = (): void => {
     // TODO: Implémenter l'aperçu rapide
-    console.log('Quick view:', product.name);
+    // TODO: Implement quick view functionality
   };
 
   const handleShare = (): void => {

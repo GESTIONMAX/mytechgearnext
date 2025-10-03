@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import type { ProductWithDetails, ProductVariantWithDetails } from '@/types';
+import type { ProductVariantWithDetails } from '@/types';
 
 interface UseProductVariantsOptions {
   productId?: string;

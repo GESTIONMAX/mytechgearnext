@@ -20,9 +20,9 @@ const LanguageSelector: React.FC = () => {
     it: { name: 'Italiano', flag: '🇮🇹' },
   };
 
-  const changeLanguage = (code: string): void => {
+  const changeLanguage = (_code: string): void => {
     // TODO: Implémenter le changement de langue
-    console.log('Changement de langue vers:', code);
+    // TODO: Implement language change logging
   };
 
   const getLanguageFlag = (code: string): void => {

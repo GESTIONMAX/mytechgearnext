@@ -87,7 +87,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
 
   return (
     <div className={`grid ${getGridCols()} gap-6`}>
-      {itemsToRender.map((item, index) => {
+      {itemsToRender.map((item, _index) => {
         if (item.variant) {
           return (
             <ProductVariantCard

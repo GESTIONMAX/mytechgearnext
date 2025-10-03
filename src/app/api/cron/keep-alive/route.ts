@@ -56,7 +56,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const duration = Date.now() - startTime;
 
     // Log pour monitoring
-    console.log(`✅ Cron keep-alive successful - ${new Date().toISOString()} - ${duration}ms`);
+    logger.info(`Cron keep-alive successful`, { duration, timestamp: new Date().toISOString() });
 
     return NextResponse.json({
       success: true,
@@ -69,7 +69,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   } catch (error) {
     const duration = Date.now() - startTime;
 
-    console.error('❌ Cron keep-alive failed:', error);
+    logger.error('Cron keep-alive failed', error);
 
     return NextResponse.json(
       {

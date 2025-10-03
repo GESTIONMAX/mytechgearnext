@@ -166,7 +166,7 @@ export interface ProductWithDetails {
   created_at: string;
   updated_at: string;
   is_active: boolean;
-  specifications: Record<string, any> | null;
+  specifications: Record<string, unknown> | null;
   image_url?: string;
   category?: {
     name: string;
@@ -187,7 +187,7 @@ export interface ProductVariantWithDetails {
   in_stock: boolean;
   stock_quantity: number;
   product_id: string;
-  attributes: Record<string, any>;
+  attributes: Record<string, unknown>;
   created_at: string;
   updated_at: string;
   image_url?: string;

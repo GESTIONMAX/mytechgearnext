@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight, Maximize2, Pause, Play, X } from 'lucide-react';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 interface ImageData {
   url: string;
@@ -47,12 +47,12 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({
       clearInterval(intervalRef.current);
     }
 
-    return () => {
+    return (): void => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isAutoPlaying, images.length, autoPlayInterval]);
+  }, [isAutoPlaying, images.length, autoPlayInterval, goToNext, goToPrevious, toggleAutoPlay]);
 
   // Scroll thumbnails into view
   useEffect(() => {
@@ -68,17 +68,17 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({
     }
   }, [selectedIndex]);
 
-  const goToPrevious = (): void => {
+  const goToPrevious = useCallback((): void => {
     setSelectedIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
+  }, [images.length]);
 
-  const goToNext = (): void => {
+  const goToNext = useCallback((): void => {
     setSelectedIndex((prev) => (prev + 1) % images.length);
-  };
+  }, [images.length]);
 
-  const toggleAutoPlay = (): void => {
+  const toggleAutoPlay = useCallback((): void => {
     setIsAutoPlaying(!isAutoPlaying);
-  };
+  }, [isAutoPlaying]);
 
   const toggleFullscreen = (): void => {
     setIsFullscreen(!isFullscreen);
@@ -128,7 +128,7 @@ const ProductImageCarousel: React.FC<ProductImageCarouselProps> = ({
     };
 
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return (): void => document.removeEventListener('keydown', handleKeyDown);
   }, [isFullscreen]);
 
   if (!images || images.length === 0) {

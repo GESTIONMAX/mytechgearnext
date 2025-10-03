@@ -32,14 +32,14 @@ export const ProductVariantSelector: React.FC<ProductVariantSelectorProps> = ({
     }).format(price / 100);
   };
 
-  const getVariantImage = (variant: any): string => {
+  const getVariantImage = (variant: ProductVariantWithDetails): string => {
     if (variant.images && variant.images.length > 0) {
       return variant.images[0].image_url;
     }
     return '/placeholder.svg';
   };
 
-  const getStockStatus = (variant: any): { text: string; color: string; available: boolean } => {
+  const getStockStatus = (variant: ProductVariantWithDetails): { text: string; color: string; available: boolean } => {
     if (!variant.in_stock) {
       return { text: 'Rupture de stock', color: 'text-red-600', available: false };
     }
@@ -49,7 +49,7 @@ export const ProductVariantSelector: React.FC<ProductVariantSelectorProps> = ({
     return { text: 'En stock', color: 'text-green-600', available: true };
   };
 
-  const handleVariantClick = (variant: any): void => {
+  const handleVariantClick = (variant: ProductVariantWithDetails): void => {
     setLocalSelectedVariant(variant);
   };
 

@@ -152,7 +152,7 @@ export default function CheckoutSuccessPage(): React.JSX.Element {
             <CardContent className="p-6 text-center">
               <CheckCircle className="h-8 w-8 text-purple-600 mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">Garantie satisfait</h3>
-              <p className="text-sm text-gray-600">30 jours pour changer d'avis, retour gratuit.</p>
+              <p className="text-sm text-gray-600">30 jours pour changer d&apos;avis, retour gratuit.</p>
             </CardContent>
           </Card>
         </div>
