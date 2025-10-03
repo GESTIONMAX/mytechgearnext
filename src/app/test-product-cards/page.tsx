@@ -64,19 +64,19 @@ export default function TestProductCardsPage(): React.JSX.Element {
               key={product.id}
               product={product}
               onAddToCart={(product) => {
-                console.log('Ajouter au panier:', product.name);
+                // console.log('Ajouter au panier:', product.name);
                 alert(`Ajouté au panier: ${product.name}`);
               }}
               onToggleWishlist={(product) => {
-                console.log('Toggle wishlist:', product.name);
+                // console.log('Toggle wishlist:', product.name);
                 alert(`Ajouté aux favoris: ${product.name}`);
               }}
               onQuickView={(product) => {
-                console.log('Aperçu rapide:', product.name);
+                // console.log('Aperçu rapide:', product.name);
                 alert(`Aperçu rapide: ${product.name}`);
               }}
               onShare={(product) => {
-                console.log('Partager:', product.name);
+                // console.log('Partager:', product.name);
                 alert(`Partage: ${product.name}`);
               }}
               showActions={true}

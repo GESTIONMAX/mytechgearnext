@@ -71,9 +71,27 @@ interface WordPressProduct {
   }>;
 }
 
+interface WordPressProductVariant {
+  id: number;
+  attributes: Array<{
+    id: number;
+    name: string;
+    option: string;
+  }>;
+  price: string;
+  regular_price: string;
+  sale_price?: string;
+  stock_quantity?: number;
+  stock_status: string;
+  image?: {
+    id: number;
+    src: string;
+  };
+}
+
 interface WordPressProductCardDetailsProps {
   product: WordPressProduct;
-  onAddToCart?: (product: WordPressProduct, quantity: number, variant?: any) => void;
+  onAddToCart?: (product: WordPressProduct, quantity: number, variant?: WordPressProductVariant) => void;
   onToggleWishlist?: (product: WordPressProduct) => void;
   onShare?: (product: WordPressProduct) => void;
 }
@@ -88,9 +106,9 @@ export const WordPressProductCardDetails: React.FC<WordPressProductCardDetailsPr
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState<WordPressProductVariant | null>(null);
   const [isWishlisted, setIsWishlisted] = useState(false);
-  const [showVariantSelector, setShowVariantSelector] = useState(false);
+  const [_showVariantSelector, _setShowVariantSelector] = useState(false);
   const { addItem, openCart } = useWordPressCart();
-  const { variations, isLoading: variationsLoading, getVariationsForProduct } = useWordPressProductVariations();
+  const { variations, isLoading: _variationsLoading, getVariationsForProduct } = useWordPressProductVariations();
 
   // Charger les variantes quand le composant se monte
   useEffect(() => {
@@ -161,18 +179,14 @@ export const WordPressProductCardDetails: React.FC<WordPressProductCardDetailsPr
   };
 
   const handleAddToCart = (): void => {
-    addItem(product, quantity, selectedVariant);
+    addItem(product, quantity, selectedVariant ?? undefined);
     openCart();
-    onAddToCart?.(product, quantity, selectedVariant);
+    onAddToCart?.(product, quantity, selectedVariant ?? undefined);
   };
 
   const handleToggleWishlist = (): void => {
     setIsWishlisted(!isWishlisted);
     onToggleWishlist?.(product);
-  };
-
-  const handleQuickView = (): void => {
-    // TODO: Implémenter l'aperçu rapide
   };
 
   const handleShare = (): void => {
@@ -186,7 +200,7 @@ export const WordPressProductCardDetails: React.FC<WordPressProductCardDetailsPr
     return '/placeholder.svg';
   };
 
-  const getFeatureIcon = (feature: string): JSX.Element => {
+  const getFeatureIcon = (feature: string): React.ReactElement => {
     const featureLower = feature.toLowerCase();
     if (featureLower.includes('gps') || featureLower.includes('navigation')) {
       return <MapPin className="h-4 w-4" />;
@@ -330,7 +344,7 @@ export const WordPressProductCardDetails: React.FC<WordPressProductCardDetailsPr
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-gray-900">Variantes disponibles</h3>
-                <Button variant="outline" size="sm" onClick={() => setShowVariantSelector(true)}>
+                <Button variant="outline" size="sm" onClick={() => _setShowVariantSelector(true)}>
                   Voir toutes les variantes
                 </Button>
               </div>
@@ -345,12 +359,12 @@ export const WordPressProductCardDetails: React.FC<WordPressProductCardDetailsPr
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
-                    {variant.attributes?.map((attr) => attr.option).join(' - ') || `Variante ${variant.id}`}
+                    {variant.attributes?.map((attr: { id: number; name: string; option: string }) => attr.option).join(' - ') || `Variante ${variant.id}`}
                   </button>
                 ))}
                 {product.variations.length > 3 && (
                   <button
-                    onClick={() => setShowVariantSelector(true)}
+                    onClick={() => _setShowVariantSelector(true)}
                     className="px-4 py-2 rounded-lg border-2 border-dashed border-gray-300 hover:border-gray-400 text-gray-600 hover:text-gray-700"
                   >
                     +{product.variations.length - 3} autres

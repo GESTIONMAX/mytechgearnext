@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { ProductGrid } from '@/components/ProductGrid';
 import { CheckCircle, Clock, Shield, Star, Truck, Headphones, Zap, Gauge, MapPin, Battery, Play } from 'lucide-react';
 import Link from 'next/link';
@@ -19,17 +19,17 @@ export default function SportPage(): JSX.Element {
   // Filtrer les produits de la catégorie SPORT
   const products = allProducts.filter((product) => product.category?.name?.toUpperCase() === 'SPORT');
 
-  const handleAddToCart = (product: any, variant?: any): void => {
+  const handleAddToCart = (_product: unknown): void => {
     // TODO: Implement functionality
     // TODO: Implémenter l'ajout au panier
   };
 
-  const handleToggleWishlist = (product: any): void => {
+  const handleToggleWishlist = (_product: unknown): void => {
     // TODO: Implement functionality
     // TODO: Implémenter la wishlist
   };
 
-  const handleQuickView = (product: any): void => {
+  const handleQuickView = (_product: unknown): void => {
     // TODO: Implement functionality
     // TODO: Implémenter l'aperçu rapide
   };

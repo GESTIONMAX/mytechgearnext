@@ -10,7 +10,7 @@ import { ShoppingCart, Trash2 } from 'lucide-react';
 
 export default function TestWordPressCartPage(): React.JSX.Element {
   const { products, isLoading, error } = useWordPressProducts();
-  const { items, totalItems, totalPrice, clearCart, removeItem, updateQuantity } = useWordPressCart();
+  const { items, totalItems, totalPrice, clearCart, removeItem } = useWordPressCart();
 
   if (isLoading) {
     return (
@@ -97,17 +97,17 @@ export default function TestWordPressCartPage(): React.JSX.Element {
               <WordPressProductCard
                 key={product.id}
                 product={product}
-                onAddToCart={(product) => {
-                  console.log('Ajouté au panier:', product.name);
+                onAddToCart={() => {
+                  // console.log('Ajouté au panier:', product.name);
                 }}
-                onToggleWishlist={(product) => {
-                  console.log('Toggle wishlist:', product.name);
+                onToggleWishlist={() => {
+                  // console.log('Toggle wishlist:', product.name);
                 }}
-                onQuickView={(product) => {
-                  console.log('Aperçu rapide:', product.name);
+                onQuickView={() => {
+                  // console.log('Aperçu rapide:', product.name);
                 }}
-                onShare={(product) => {
-                  console.log('Partager:', product.name);
+                onShare={() => {
+                  // console.log('Partager:', product.name);
                 }}
                 showActions={true}
               />
@@ -126,7 +126,7 @@ export default function TestWordPressCartPage(): React.JSX.Element {
                     <div className="font-medium">{item.product.name}</div>
                     <div className="text-sm text-gray-500">
                       {item.variant
-                        ? `Variante: ${item.variant.attributes?.map((attr: any) => attr.option).join(' - ')}`
+                        ? `Variante: ${item.variant.attributes?.map((attr: { option: string }) => attr.option).join(' - ')}`
                         : 'Produit standard'}
                     </div>
                   </div>

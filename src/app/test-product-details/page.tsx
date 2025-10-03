@@ -6,10 +6,24 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import Image from 'next/image';
+
+interface Product {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  short_description?: string;
+  price: string;
+  regular_price?: string;
+  sale_price?: string;
+  in_stock: boolean;
+  images?: Array<{ src: string; alt: string }>;
+}
 
 export default function TestProductDetailsPage(): React.JSX.Element {
   const { products, isLoading, error } = useWordPressProducts();
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   if (isLoading) {
     return (
@@ -50,16 +64,16 @@ export default function TestProductDetailsPage(): React.JSX.Element {
 
         <WordPressProductCardDetails
           product={selectedProduct}
-          onAddToCart={(product, quantity, variant) => {
-            console.log('Ajouter au panier:', { product: product.name, quantity, variant });
+          onAddToCart={(product, quantity) => {
+            // console.log('Ajouter au panier:', { product: product.name, quantity, variant });
             alert(`Ajouté au panier: ${product.name} (${quantity}x)`);
           }}
           onToggleWishlist={(product) => {
-            console.log('Toggle wishlist:', product.name);
+            // console.log('Toggle wishlist:', product.name);
             alert(`Ajouté aux favoris: ${product.name}`);
           }}
           onShare={(product) => {
-            console.log('Partager:', product.name);
+            // console.log('Partager:', product.name);
             alert(`Partage: ${product.name}`);
           }}
         />
@@ -96,9 +110,11 @@ export default function TestProductDetailsPage(): React.JSX.Element {
               <div className="relative">
                 <div className="aspect-square relative overflow-hidden rounded-t-lg">
                   {product.images && product.images.length > 0 ? (
-                    <img
+                    <Image
                       src={product.images[0].src}
                       alt={product.images[0].alt || product.name}
+                      width={400}
+                      height={400}
                       className="w-full h-full object-cover"
                     />
                   ) : (

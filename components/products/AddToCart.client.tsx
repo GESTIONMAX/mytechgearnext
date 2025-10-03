@@ -23,8 +23,8 @@ export function AddToCart({ productId, variationId, className, children }: AddTo
     try {
       await addToCart(productId, 1, variationId);
       setCartOpen(true); // Ouvrir le panier après ajout
-    } catch (error) {
-      console.error('Error adding to cart:', error);
+    } catch {
+      // Error silently handled - cart state managed by hook
     } finally {
       setIsLoading(false);
     }

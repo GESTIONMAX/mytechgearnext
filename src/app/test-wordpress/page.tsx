@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface TestResult {
   success: boolean;
   message: string;
-  data?: any;
+  data?: unknown;
   error?: string;
 }
 
@@ -25,7 +25,7 @@ export default function TestWordPressPage(): React.JSX.Element {
 
     try {
       // Test 1: Configuration
-      console.log('🔍 Test 1: Vérification de la configuration...');
+      // console.log('🔍 Test 1: Vérification de la configuration...');
 
       if (!config.wordpressUrl || !config.consumerKey || !config.consumerSecret) {
         newResults.push({
@@ -49,7 +49,7 @@ export default function TestWordPressPage(): React.JSX.Element {
       });
 
       // Test 2: Test de connexion WooCommerce REST API
-      console.log('📦 Test 2: Test de connexion WooCommerce REST API...');
+      // console.log('📦 Test 2: Test de connexion WooCommerce REST API...');
 
       const wcUrl = `${config.wordpressUrl}/wp-json/wc/v3/products`;
       const auth = btoa(`${config.consumerKey}:${config.consumerSecret}`);
@@ -78,7 +78,7 @@ export default function TestWordPressPage(): React.JSX.Element {
       }
 
       // Test 3: Test de connexion GraphQL
-      console.log('🔗 Test 3: Test de connexion GraphQL...');
+      // console.log('🔗 Test 3: Test de connexion GraphQL...');
 
       const graphqlUrl = `${config.wordpressUrl}/graphql`;
       const graphqlQuery = {
@@ -134,7 +134,7 @@ export default function TestWordPressPage(): React.JSX.Element {
       }
 
       // Test 4: Test de création de produit (optionnel)
-      console.log('✍️ Test 4: Test de création de produit...');
+      // console.log('✍️ Test 4: Test de création de produit...');
 
       const testProduct = {
         name: 'Test Product Next.js',
@@ -182,11 +182,11 @@ export default function TestWordPressPage(): React.JSX.Element {
           message: '🧹 Produit test supprimé',
         });
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       newResults.push({
         success: false,
         message: '❌ Erreur générale',
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
       });
     }
 

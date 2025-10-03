@@ -1,12 +1,8 @@
 'use client';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Star, ShoppingCart, Heart, Eye, Zap, Music, Shield, Sparkles, Filter, Grid, List } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Zap, Music, Shield, Sparkles, Filter, Grid, List } from 'lucide-react';
 import { useState } from 'react';
 import { useWordPressProducts } from '@/hooks/useWordPressProducts';
 import { WordPressProductCard } from '@/components/WordPressProductCard';
@@ -16,7 +12,7 @@ export default function ProductsPage(): React.JSX.Element {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   // Utiliser les données WordPress au lieu des données statiques
-  const { products: wordpressProducts, categories: wordpressCategories, isLoading, error } = useWordPressProducts();
+  const { products: wordpressProducts, isLoading, error } = useWordPressProducts();
 
   const categories = [
     {
@@ -49,7 +45,7 @@ export default function ProductsPage(): React.JSX.Element {
     },
   ];
 
-  const products = [
+  const _products = [
     // Sport Collection
     {
       id: 'music-shield',
@@ -204,18 +200,6 @@ export default function ProductsPage(): React.JSX.Element {
   const filteredProducts =
     activeCategory === 'all' ? mappedProducts : mappedProducts.filter((product) => product.category === activeCategory);
 
-  const handleAddToCart = (productId: string): void => {
-    // TODO: Implement cart functionality
-  };
-
-  const handleToggleWishlist = (productId: string): void => {
-    // TODO: Implement wishlist functionality
-  };
-
-  const getProductUrl = (productId: string): string => {
-    return `/product/${productId}`;
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -299,19 +283,15 @@ export default function ProductsPage(): React.JSX.Element {
                       key={wpProduct.id}
                       product={wpProduct}
                       onAddToCart={(product) => {
-                        console.log('Ajouté au panier:', product.name);
                         alert(`Ajouté au panier: ${product.name}`);
                       }}
                       onToggleWishlist={(product) => {
-                        console.log('Toggle wishlist:', product.name);
                         alert(`Ajouté aux favoris: ${product.name}`);
                       }}
                       onQuickView={(product) => {
-                        console.log('Aperçu rapide:', product.name);
                         alert(`Aperçu rapide: ${product.name}`);
                       }}
                       onShare={(product) => {
-                        console.log('Partager:', product.name);
                         if (navigator.share) {
                           navigator.share({
                             title: product.name,
@@ -335,7 +315,7 @@ export default function ProductsPage(): React.JSX.Element {
         {/* CTA Section */}
         <div className="text-center py-12 bg-muted rounded-lg">
           <h3 className="text-2xl font-bold text-foreground mb-4">Vous ne trouvez pas ce que vous cherchez ?</h3>
-          <p className="text-muted-foreground mb-6">Contactez notre équipe d'experts pour des conseils personnalisés</p>
+          <p className="text-muted-foreground mb-6">Contactez notre équipe d&apos;experts pour des conseils personnalisés</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Filter className="mr-2 h-5 w-5" />

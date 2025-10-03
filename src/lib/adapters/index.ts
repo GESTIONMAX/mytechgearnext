@@ -70,7 +70,7 @@ export class UnifiedAdapter {
   /**
    * Convertit un produit WordPress vers le format unifié
    */
-  static fromWordPressProduct(wpProduct: any): UnifiedProduct {
+  static fromWordPressProduct(wpProduct: unknown): UnifiedProduct {
     const adapted = WordPressAdapter.adaptProduct(wpProduct);
 
     return {
@@ -94,7 +94,7 @@ export class UnifiedAdapter {
   /**
    * Convertit un produit Supabase vers le format unifié
    */
-  static fromSupabaseProduct(sbProduct: any): UnifiedProduct {
+  static fromSupabaseProduct(sbProduct: unknown): UnifiedProduct {
     const adapted = SupabaseAdapter.adaptProduct(sbProduct);
 
     return {
@@ -118,14 +118,14 @@ export class UnifiedAdapter {
   /**
    * Convertit un utilisateur Supabase vers le format unifié
    */
-  static fromSupabaseUser(sbUser: any): UnifiedUser {
+  static fromSupabaseUser(sbUser: unknown): UnifiedUser {
     return SupabaseAdapter.adaptUser(sbUser);
   }
 
   /**
    * Convertit une commande Supabase vers le format unifié
    */
-  static fromSupabaseOrder(sbOrder: any): UnifiedOrder {
+  static fromSupabaseOrder(sbOrder: unknown): UnifiedOrder {
     const adapted = SupabaseAdapter.adaptOrder(sbOrder);
 
     return {

@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { CheckCircle, ShoppingCart, CreditCard, Package, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle, ShoppingCart, CreditCard, Package, ArrowRight, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -24,7 +24,7 @@ export default function TestCheckoutFlowPage(): React.JSX.Element {
     }).format(price);
   };
 
-  const handleAddToCart = (product: any): void => {
+  const handleAddToCart = (product: unknown): void => {
     addItem(product, 1);
     alert(`Ajouté au panier: ${product.name}`);
   };
@@ -76,7 +76,7 @@ export default function TestCheckoutFlowPage(): React.JSX.Element {
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4">🛒 Test Parcours Checkout</h1>
           <p className="text-gray-600 mb-4">
-            Test complet du parcours d'achat : Produits → Panier → Checkout → Confirmation
+            Test complet du parcours d&apos;achat : Produits → Panier → Checkout → Confirmation
           </p>
           <div className="flex items-center space-x-4 mb-4">
             <Badge variant="outline" className="bg-blue-100 text-blue-800">
@@ -157,7 +157,7 @@ export default function TestCheckoutFlowPage(): React.JSX.Element {
           <div className="space-y-6">
             <div className="text-center">
               <h2 className="text-2xl font-semibold mb-4">🛍️ Sélectionnez des produits</h2>
-              <p className="text-gray-600 mb-6">Cliquez sur "Ajouter au panier" pour tester le parcours</p>
+              <p className="text-gray-600 mb-6">Cliquez sur &quot;Ajouter au panier&quot; pour tester le parcours</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -166,9 +166,9 @@ export default function TestCheckoutFlowPage(): React.JSX.Element {
                   key={product.id}
                   product={product}
                   onAddToCart={handleAddToCart}
-                  onToggleWishlist={() => console.log('Toggle wishlist:', product.name)}
-                  onQuickView={() => console.log('Quick view:', product.name)}
-                  onShare={() => console.log('Share:', product.name)}
+                  onToggleWishlist={() => {}}
+                  onQuickView={() => {}}
+                  onShare={() => {}}
                   showActions={true}
                 />
               ))}

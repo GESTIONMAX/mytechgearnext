@@ -7,7 +7,8 @@
  * - API frontend agnostique
  */
 
-import { UnifiedProduct, UnifiedUser, UnifiedOrder, UnifiedAdapter, UnifiedUtils } from '@/lib/adapters';
+import type { UnifiedProduct } from '@/lib/adapters';
+import { UnifiedAdapter, UnifiedUtils } from '@/lib/adapters';
 import { WordPressService } from '@/services/wordpress-service';
 
 // ===== TYPES D'API =====
@@ -266,7 +267,7 @@ export class UnifiedAPI {
   static async getCategories(): Promise<ApiResponse<Array<{ id: string; name: string; slug: string }>>> {
     try {
       const wpCategories = await WordPressService.getCategories();
-      const categories = wpCategories.map((cat: any) => ({
+      const categories = (wpCategories as Array<{ id: number; name: string; slug: string }>).map((cat) => ({
         id: cat.id.toString(),
         name: cat.name,
         slug: cat.slug,

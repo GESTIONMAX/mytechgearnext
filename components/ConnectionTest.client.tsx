@@ -5,7 +5,6 @@ import { createClient } from '@/lib/supabase/client';
 import { useProducts } from '@/hooks/useProducts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { CheckCircle, XCircle, Loader2 } from 'lucide-react';
 
 export function ConnectionTest() {
@@ -19,7 +18,7 @@ export function ConnectionTest() {
     const testSupabase = async () => {
       try {
         const supabase = createClient();
-        const { data, error } = await supabase.from('profiles').select('count').limit(1);
+        const { error } = await supabase.from('profiles').select('count').limit(1);
 
         if (error) {
           setSupabaseError(error.message);

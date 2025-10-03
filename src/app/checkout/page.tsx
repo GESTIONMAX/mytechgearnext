@@ -1,6 +1,5 @@
 'use client';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -8,13 +7,13 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { useWordPressCart } from '@/hooks/useWordPressCart';
 import { useWordPressCheckout } from '@/hooks/useWordPressCheckout';
-import { ArrowLeft, CreditCard, MapPin, User, Lock, Truck, Shield, AlertCircle, CheckCircle } from 'lucide-react';
+import { ArrowLeft, CreditCard, MapPin, User, Lock, Truck, Shield, AlertCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function CheckoutPage(): React.JSX.Element {
-  const { items, getTotalPrice, clearCart } = useWordPressCart();
+  const { items, clearCart } = useWordPressCart();
   const { isProcessing, error, createOrder, validateOrder, getShippingMethods, getPaymentMethods } =
     useWordPressCheckout();
 
@@ -325,7 +324,7 @@ export default function CheckoutPage(): React.JSX.Element {
                       onChange={handleInputChange}
                       className="rounded"
                     />
-                    <Label htmlFor="sameAsBilling">Identique à l'adresse de facturation</Label>
+                    <Label htmlFor="sameAsBilling">Identique à l&apos;adresse de facturation</Label>
                   </div>
 
                   {!formData.sameAsBilling && (

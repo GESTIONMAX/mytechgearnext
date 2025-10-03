@@ -8,8 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useCart } from '@/contexts/cart-context';
-import { logger } from '@/lib/logger';
-import type { ProductWithDetails } from '@/services/productService';
+import type { ProductWithDetails, Product } from '@/types';
 
 interface ProductCardProps {
   product: ProductWithDetails;
@@ -37,28 +36,28 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   const getMainImage = (): string => {
     if (product.images && product.images.length > 0) {
-      return product.images[0].image_url;
+      return typeof product.images[0] === 'string' ? product.images[0] : product.image_url || '/placeholder.svg';
     }
-    return '/placeholder.svg';
+    return product.image_url || '/placeholder.svg';
   };
 
   const getFinalPrice = (): number => {
-    return product.sale_price || product.price;
+    return product.salePrice || product.price;
   };
 
   const getOriginalPrice = (): number | null => {
-    return product.sale_price ? product.price : null;
+    return product.salePrice ? product.price : null;
   };
 
   const isOnSale = (): boolean => {
-    return !!product.sale_price && product.sale_price < product.price;
+    return !!product.salePrice && product.salePrice < product.price;
   };
 
   const getStockStatus = (): { text: string; color: string } => {
-    if (!product.in_stock) {
+    if (!product.inStock) {
       return { text: 'Rupture de stock', color: 'bg-red-100 text-red-800' };
     }
-    if (product.stock_quantity <= 5) {
+    if (product.stockQuantity <= 5) {
       return { text: 'Stock faible', color: 'bg-orange-100 text-orange-800' };
     }
     return { text: 'En stock', color: 'bg-green-100 text-green-800' };
@@ -81,11 +80,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       navigator
         .share({
           title: product.name,
-          text: product.short_description || product.description,
+          text: product.shortDescription || product.description,
           url: `${window.location.origin}/product/${product.slug}`,
         })
-        .catch((error) => {
-          logger.error('Erreur lors du partage', error);
+        .catch(() => {
+          // Error handled silently
         });
     } else {
       // Fallback: copier le lien dans le presse-papiers
@@ -94,8 +93,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         .then(() => {
           alert('Lien copié dans le presse-papiers !');
         })
-        .catch((error) => {
-          logger.error('Erreur lors de la copie', error);
+        .catch(() => {
+          // Error handled silently
         });
     }
   };
@@ -104,14 +103,34 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     e.preventDefault();
     e.stopPropagation();
 
+    // Convertir ProductWithDetails en Product pour le contexte
+    const productForCart: Product = {
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      description: product.description,
+      shortDescription: product.shortDescription,
+      price: product.price,
+      salePrice: product.salePrice,
+      images: product.images,
+      category: typeof product.category === 'object' && product.category !== null ? product.category.name : (product.category || ''),
+      categorySlug: typeof product.category === 'object' && product.category !== null ? product.category.slug : undefined,
+      tags: product.tags || [],
+      inStock: product.inStock,
+      stockQuantity: product.stockQuantity,
+      variants: product.variants,
+      features: product.features,
+      specifications: product.specifications,
+    };
+
     // Ajouter au panier via le contexte
-    addItem(product, 1);
+    addItem(productForCart, 1);
 
     // Appeler la fonction callback si fournie
     onAddToCart?.(product);
 
     // Feedback visuel (optionnel)
-    logger.info('Product added to cart', { productName: product.name, productId: product.id });
+    // logger.info('Product added to cart', { productName: product.name, productId: product.id });
   };
 
   return (
@@ -129,7 +148,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <div className="absolute top-2 left-2 flex flex-col gap-1">
             {isOnSale() && (
               <Badge variant="destructive" className="text-xs">
-                -{Math.round(((product.price - product.sale_price!) / product.price) * 100)}%
+                -{Math.round(((product.price - product.salePrice!) / product.price) * 100)}%
               </Badge>
             )}
             {product.category && (
@@ -191,8 +210,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               {product.name}
             </h3>
 
-            {product.short_description && (
-              <p className="text-sm text-gray-600 line-clamp-2">{product.short_description}</p>
+            {product.shortDescription && (
+              <p className="text-sm text-gray-600 line-clamp-2">{product.shortDescription}</p>
             )}
 
             {/* Rating */}
@@ -217,7 +236,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {product.variants && product.variants.length > 0 && (
               <div className="space-y-2">
                 <div className="flex flex-wrap gap-1">
-                  {product.variants.slice(0, 3).map((variant, index) => (
+                  {product.variants.slice(0, 3).map((variant: { name: string; id: string }, index: number) => (
                     <Badge key={index} variant="outline" className="text-xs">
                       {variant.name.split(' - ')[1] || variant.name}
                     </Badge>
@@ -234,7 +253,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {/* Features */}
             {product.features && product.features.length > 0 && (
               <div className="flex flex-wrap gap-1">
-                {product.features.slice(0, 2).map((feature, index) => (
+                {product.features.slice(0, 2).map((feature: string, index: number) => (
                   <Badge key={index} variant="outline" className="text-xs">
                     {feature}
                   </Badge>
@@ -245,7 +264,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {/* Actions */}
             {showActions && (
               <div className="flex gap-2 pt-2">
-                <Button size="sm" className="flex-1" onClick={handleAddToCart} disabled={!product.in_stock}>
+                <Button size="sm" className="flex-1" onClick={handleAddToCart} disabled={!product.inStock}>
                   <ShoppingCart className="h-4 w-4 mr-1" />
                   Ajouter
                 </Button>

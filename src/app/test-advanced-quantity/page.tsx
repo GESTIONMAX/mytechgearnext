@@ -4,7 +4,7 @@ import { AdvancedQuantitySelector } from '@/components/ui/advanced-quantity-sele
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, AlertCircle, Package, ShoppingCart, Settings } from 'lucide-react';
+import { CheckCircle, AlertCircle, Package, Settings } from 'lucide-react';
 import { useState } from 'react';
 
 export default function TestAdvancedQuantityPage(): React.JSX.Element {
@@ -126,7 +126,7 @@ export default function TestAdvancedQuantityPage(): React.JSX.Element {
                   </label>
                 </div>
                 <div className="text-sm text-gray-600">
-                  <p>Configurez l'affichage du sélecteur de quantité</p>
+                  <p>Configurez l&apos;affichage du sélecteur de quantité</p>
                 </div>
               </CardContent>
             </Card>
@@ -264,11 +264,11 @@ export default function TestAdvancedQuantityPage(): React.JSX.Element {
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>Flexibilité d'affichage (boutons + dropdown)</span>
+                    <span>Flexibilité d&apos;affichage (boutons + dropdown)</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>Suppression facile (option "Supprimer" + bouton)</span>
+                    <span>Suppression facile (option &quot;Supprimer&quot; + bouton)</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
@@ -326,13 +326,13 @@ export default function TestAdvancedQuantityPage(): React.JSX.Element {
               <strong>Modification:</strong> Changez les quantités avec les différents contrôles
             </li>
             <li>
-              <strong>Suppression:</strong> Utilisez l'option "Supprimer" ou le bouton poubelle
+              <strong>Suppression:</strong> Utilisez l&apos;option &quot;Supprimer&quot; ou le bouton poubelle
             </li>
             <li>
               <strong>Restauration:</strong> Restaurez les produits supprimés
             </li>
             <li>
-              <strong>Flexibilité:</strong> Testez différentes configurations d'affichage
+              <strong>Flexibilité:</strong> Testez différentes configurations d&apos;affichage
             </li>
             <li>
               <strong>Performance:</strong> Comparez les différentes méthodes de sélection

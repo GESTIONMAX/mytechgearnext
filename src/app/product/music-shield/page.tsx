@@ -66,7 +66,7 @@ export default function MusicShieldProductPage(): React.JSX.Element {
           <Link href="/">
             <Button variant="outline" className="border-border text-foreground hover:bg-muted">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour à l'accueil
+              Retour à l&apos;accueil
             </Button>
           </Link>
         </div>

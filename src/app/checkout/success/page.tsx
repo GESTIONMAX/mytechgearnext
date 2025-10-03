@@ -4,7 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { CheckCircle, Package, Truck, CreditCard, ArrowRight, Home, ShoppingBag } from 'lucide-react';
+import { CheckCircle, Package, Truck, CreditCard, Home, ShoppingBag } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -92,8 +93,8 @@ export default function CheckoutSuccessPage(): React.JSX.Element {
 
       const orderData: WordPressOrder = await response.json();
       setOrder(orderData);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
     } finally {
       setIsLoading(false);
     }
@@ -168,7 +169,7 @@ export default function CheckoutSuccessPage(): React.JSX.Element {
               <Button>Voir les produits</Button>
             </Link>
             <Link href="/">
-              <Button variant="outline">Retour à l'accueil</Button>
+              <Button variant="outline">Retour à l&apos;accueil</Button>
             </Link>
           </div>
         </div>
@@ -236,9 +237,9 @@ export default function CheckoutSuccessPage(): React.JSX.Element {
               <CardContent className="space-y-4">
                 {order.line_items.map((item) => (
                   <div key={item.id} className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center relative">
                       {item.image ? (
-                        <img src={item.image.src} alt={item.name} className="w-full h-full object-cover rounded-lg" />
+                        <Image src={item.image.src} alt={item.name} fill className="object-cover rounded-lg" />
                       ) : (
                         <Package className="w-6 h-6 text-gray-400" />
                       )}
@@ -387,7 +388,7 @@ export default function CheckoutSuccessPage(): React.JSX.Element {
               <Link href="/">
                 <Button variant="outline" className="w-full">
                   <Home className="w-4 h-4 mr-2" />
-                  Retour à l'accueil
+                  Retour à l&apos;accueil
                 </Button>
               </Link>
             </div>

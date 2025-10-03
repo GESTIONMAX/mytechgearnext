@@ -4,7 +4,7 @@ import { QuantitySelector } from '@/components/ui/quantity-selector';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, AlertCircle, Package, ShoppingCart } from 'lucide-react';
+import { CheckCircle, AlertCircle, Package } from 'lucide-react';
 import { useState } from 'react';
 
 export default function TestQuantitySelectorPage(): React.JSX.Element {
@@ -234,7 +234,7 @@ export default function TestQuantitySelectorPage(): React.JSX.Element {
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>Suppression facile (option "Supprimer")</span>
+                    <span>Suppression facile (option &quot;Supprimer&quot;)</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
@@ -283,10 +283,10 @@ export default function TestQuantitySelectorPage(): React.JSX.Element {
               <strong>Modification:</strong> Changez les quantités avec les sélecteurs
             </li>
             <li>
-              <strong>Suppression:</strong> Sélectionnez "❌ Supprimer" pour retirer un produit
+              <strong>Suppression:</strong> Sélectionnez &quot;❌ Supprimer&quot; pour retirer un produit
             </li>
             <li>
-              <strong>Restauration:</strong> Utilisez le bouton "Restaurer" pour remettre un produit
+              <strong>Restauration:</strong> Utilisez le bouton &quot;Restaurer&quot; pour remettre un produit
             </li>
             <li>
               <strong>Limites:</strong> Testez les limites min/max de chaque produit
@@ -298,7 +298,7 @@ export default function TestQuantitySelectorPage(): React.JSX.Element {
               <strong>Performance:</strong> Comparez avec les boutons + et -
             </li>
             <li>
-              <strong>Mobile:</strong> Testez sur mobile pour l'expérience tactile
+              <strong>Mobile:</strong> Testez sur mobile pour l&apos;expérience tactile
             </li>
           </ol>
         </div>

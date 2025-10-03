@@ -30,13 +30,20 @@ interface WordPressProduct {
   }>;
 }
 
+interface WordPressVariant {
+  id: number;
+  price?: string;
+  sale_price?: string;
+  [key: string]: unknown;
+}
+
 interface WordPressCartItem {
   id: string; // Combinaison productId + variantId (si applicable)
   productId: number;
   product: WordPressProduct;
   quantity: number;
   variantId?: number;
-  variant?: any; // Variante sélectionnée
+  variant?: WordPressVariant; // Variante sélectionnée
   price: number; // Prix au moment de l'ajout
   total: number; // price * quantity
 }
@@ -46,7 +53,7 @@ interface WordPressCartState {
   isOpen: boolean;
 
   // Actions
-  addItem: (product: WordPressProduct, quantity: number, variant?: any) => void;
+  addItem: (product: WordPressProduct, quantity: number, variant?: WordPressVariant) => void;
   removeItem: (itemId: string) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   clearCart: () => void;
@@ -67,7 +74,7 @@ export const useWordPressCartStore = create<WordPressCartState>()(
       items: [],
       isOpen: false,
 
-      addItem: (product, quantity, variant) => {
+      addItem: (product, quantity, variant): void => {
         const variantId = variant?.id;
         const itemId = `${product.id}-${variantId || 'default'}`;
         const price = parseFloat(variant?.sale_price || variant?.price || product.sale_price || product.price);
@@ -99,13 +106,13 @@ export const useWordPressCartStore = create<WordPressCartState>()(
         });
       },
 
-      removeItem: (itemId) => {
+      removeItem: (itemId): void => {
         set((state) => ({
           items: state.items.filter((item) => item.id !== itemId),
         }));
       },
 
-      updateQuantity: (itemId, quantity) => {
+      updateQuantity: (itemId, quantity): void => {
         if (quantity <= 0) {
           get().removeItem(itemId);
           return;
@@ -118,37 +125,37 @@ export const useWordPressCartStore = create<WordPressCartState>()(
         }));
       },
 
-      clearCart: () => {
+      clearCart: (): void => {
         set({ items: [] });
       },
 
-      toggleCart: () => {
+      toggleCart: (): void => {
         set((state) => ({ isOpen: !state.isOpen }));
       },
 
-      openCart: () => {
+      openCart: (): void => {
         set({ isOpen: true });
       },
 
-      closeCart: () => {
+      closeCart: (): void => {
         set({ isOpen: false });
       },
 
-      getTotalItems: () => {
+      getTotalItems: (): number => {
         return get().items.reduce((total, item) => total + item.quantity, 0);
       },
 
-      getTotalPrice: () => {
+      getTotalPrice: (): number => {
         return get().items.reduce((total, item) => total + item.total, 0);
       },
 
-      getItemQuantity: (productId, variantId) => {
+      getItemQuantity: (productId, variantId): number => {
         const itemId = `${productId}-${variantId || 'default'}`;
         const item = get().items.find((item) => item.id === itemId);
         return item?.quantity || 0;
       },
 
-      isItemInCart: (productId, variantId) => {
+      isItemInCart: (productId, variantId): boolean => {
         const itemId = `${productId}-${variantId || 'default'}`;
         return get().items.some((item) => item.id === itemId);
       },

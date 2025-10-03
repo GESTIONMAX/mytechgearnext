@@ -2,7 +2,6 @@
 
 import { useWordPressProducts } from '@/hooks/useWordPressProducts';
 import { useWordPressCart } from '@/hooks/useWordPressCart';
-import { WordPressProductCard } from '@/components/WordPressProductCard';
 import { WordPressCartDrawer } from '@/components/WordPressCartDrawer';
 import { QuantitySelector } from '@/components/ui/quantity-selector';
 import { Badge } from '@/components/ui/badge';
@@ -15,7 +14,7 @@ import { useState } from 'react';
 export default function TestCartManagementPage(): React.JSX.Element {
   const { products, isLoading, error } = useWordPressProducts();
   const { items, totalItems, totalPrice, addItem, updateQuantity, removeItem, clearCart } = useWordPressCart();
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<unknown>(null);
   const [testResults, setTestResults] = useState<Array<{ test: string; result: boolean; message: string }>>([]);
 
   const formatPrice = (price: number): string => {
@@ -25,7 +24,7 @@ export default function TestCartManagementPage(): React.JSX.Element {
     }).format(price);
   };
 
-  const handleAddToCart = (product: any): void => {
+  const handleAddToCart = (product: unknown): void => {
     addItem(product, 1);
     setSelectedProduct(product);
     addTestResult('Ajout au panier', true, `${product.name} ajouté au panier`);
@@ -109,7 +108,7 @@ export default function TestCartManagementPage(): React.JSX.Element {
             <Card>
               <CardContent className="p-6">
                 <h2 className="text-xl font-semibold mb-4">🛍️ Produits disponibles</h2>
-                <p className="text-gray-600 mb-4">Cliquez sur "Ajouter au panier" pour tester la gestion du panier</p>
+                <p className="text-gray-600 mb-4">Cliquez sur &quot;Ajouter au panier&quot; pour tester la gestion du panier</p>
 
                 <div className="grid grid-cols-1 gap-4">
                   {products.slice(0, 4).map((product) => (
@@ -142,7 +141,7 @@ export default function TestCartManagementPage(): React.JSX.Element {
                 <h3 className="font-semibold mb-4">📋 Instructions de test</h3>
                 <ol className="list-decimal list-inside space-y-2 text-sm text-gray-700">
                   <li>
-                    <strong>Ajout:</strong> Cliquez sur "Ajouter" pour ajouter des produits
+                    <strong>Ajout:</strong> Cliquez sur &quot;Ajouter&quot; pour ajouter des produits
                   </li>
                   <li>
                     <strong>Quantité:</strong> Utilisez les boutons + et - pour modifier les quantités
@@ -151,10 +150,10 @@ export default function TestCartManagementPage(): React.JSX.Element {
                     <strong>Suppression:</strong> Cliquez sur la poubelle pour supprimer un article
                   </li>
                   <li>
-                    <strong>Vider:</strong> Utilisez le bouton "Vider le panier" pour tout supprimer
+                    <strong>Vider:</strong> Utilisez le bouton &quot;Vider le panier&quot; pour tout supprimer
                   </li>
                   <li>
-                    <strong>Checkout:</strong> Cliquez sur "Passer la commande" pour aller au checkout
+                    <strong>Checkout:</strong> Cliquez sur &quot;Passer la commande&quot; pour aller au checkout
                   </li>
                 </ol>
               </CardContent>
@@ -198,7 +197,7 @@ export default function TestCartManagementPage(): React.JSX.Element {
                           <h4 className="font-medium text-sm">{item.product.name}</h4>
                           {item.variant && (
                             <p className="text-xs text-gray-600">
-                              {item.variant.attributes?.map((attr: any) => attr.option).join(' - ') || 'Standard'}
+                              {item.variant.attributes?.map((attr: { option: string }) => attr.option).join(' - ') || 'Standard'}
                             </p>
                           )}
                           <p className="text-xs text-gray-500">

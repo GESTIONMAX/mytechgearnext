@@ -3,21 +3,32 @@
 import { useWordPressProducts } from '@/hooks/useWordPressProducts';
 import { useWordPressProductVariations } from '@/hooks/useWordPressProductVariations';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Loader2, Package, AlertCircle, CheckCircle } from 'lucide-react';
+import { Loader2, Package, AlertCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+
+interface ProductVariation {
+  id: number;
+  sku?: string;
+  price: string;
+  regular_price?: string;
+  sale_price?: string;
+  stock_status: string;
+  stock_quantity?: number;
+  attributes?: Array<{ name: string; option: string }>;
+  image?: { src: string; alt: string };
+}
 
 export default function TestVariationsPage(): React.JSX.Element {
   const { products, isLoading: productsLoading, error: productsError } = useWordPressProducts();
   const {
-    variations,
     isLoading: variationsLoading,
     error: variationsError,
     getVariationsForProduct,
   } = useWordPressProductVariations();
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
-  const [productVariations, setProductVariations] = useState<any[]>([]);
+  const [productVariations, setProductVariations] = useState<ProductVariation[]>([]);
 
   useEffect(() => {
     if (selectedProductId) {
@@ -54,7 +65,7 @@ export default function TestVariationsPage(): React.JSX.Element {
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4">🔧 Test Variantes Produits</h1>
-          <p className="text-gray-600 mb-4">Test de la récupération et de l'affichage des variantes WordPress</p>
+          <p className="text-gray-600 mb-4">Test de la récupération et de l&apos;affichage des variantes WordPress</p>
           <div className="flex items-center space-x-4 mb-4">
             <Badge variant="outline" className="bg-blue-100 text-blue-800">
               {products.length} produits disponibles
@@ -71,7 +82,7 @@ export default function TestVariationsPage(): React.JSX.Element {
           <ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
             <li>Sélectionnez un produit avec des variantes</li>
             <li>Vérifiez que les variantes se chargent correctement</li>
-            <li>Testez l'affichage des attributs et prix</li>
+            <li>Testez l&apos;affichage des attributs et prix</li>
             <li>Vérifiez la gestion du stock</li>
           </ol>
         </div>
@@ -170,7 +181,7 @@ export default function TestVariationsPage(): React.JSX.Element {
                         {variation.attributes && variation.attributes.length > 0 && (
                           <div className="space-y-1">
                             <span className="text-xs font-medium text-gray-700">Attributs:</span>
-                            {variation.attributes.map((attr: any, index: number) => (
+                            {variation.attributes.map((attr, index: number) => (
                               <div key={index} className="text-xs text-gray-600">
                                 <span className="font-medium">{attr.name}:</span>
                                 <span className="ml-1">{attr.option}</span>
@@ -182,9 +193,11 @@ export default function TestVariationsPage(): React.JSX.Element {
                         {/* Image */}
                         {variation.image && (
                           <div className="mt-2">
-                            <img
+                            <Image
                               src={variation.image.src}
                               alt={variation.image.alt || `Variation ${variation.id}`}
+                              width={300}
+                              height={80}
                               className="w-full h-20 object-cover rounded"
                             />
                           </div>

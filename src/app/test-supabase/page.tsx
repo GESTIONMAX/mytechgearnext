@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 
 interface TestResult {
   success: boolean;
   message: string;
-  data?: any;
+  data?: unknown;
   error?: string;
 }
 
@@ -21,7 +21,7 @@ export default function TestSupabasePage(): React.JSX.Element {
 
     try {
       // Test 1: Connexion Supabase
-      console.log('🔍 Test 1: Connexion Supabase...');
+      // console.log('🔍 Test 1: Connexion Supabase...');
       const supabase = createClient();
 
       newResults.push({
@@ -31,7 +31,7 @@ export default function TestSupabasePage(): React.JSX.Element {
       });
 
       // Test 2: Récupération des produits
-      console.log('📦 Test 2: Récupération des produits...');
+      // console.log('📦 Test 2: Récupération des produits...');
       const { data: products, error: productsError } = await supabase.from('products').select('*').limit(5);
 
       if (productsError) {
@@ -49,7 +49,7 @@ export default function TestSupabasePage(): React.JSX.Element {
       }
 
       // Test 3: Récupération des catégories
-      console.log('📂 Test 3: Récupération des catégories...');
+      // console.log('📂 Test 3: Récupération des catégories...');
       const { data: categories, error: categoriesError } = await supabase.from('categories').select('*');
 
       if (categoriesError) {
@@ -67,7 +67,7 @@ export default function TestSupabasePage(): React.JSX.Element {
       }
 
       // Test 4: Récupération des variantes
-      console.log('🔧 Test 4: Récupération des variantes...');
+      // console.log('🔧 Test 4: Récupération des variantes...');
       const { data: variants, error: variantsError } = await supabase.from('product_variants').select('*').limit(5);
 
       if (variantsError) {
@@ -85,7 +85,7 @@ export default function TestSupabasePage(): React.JSX.Element {
       }
 
       // Test 5: Test d'écriture (création d'un produit test)
-      console.log("✍️ Test 5: Test d'écriture...");
+      // console.log("✍️ Test 5: Test d'écriture...");
       const testProduct = {
         name: 'Test Product Next.js',
         slug: 'test-product-nextjs',
@@ -122,11 +122,11 @@ export default function TestSupabasePage(): React.JSX.Element {
           message: '🧹 Produit test supprimé',
         });
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       newResults.push({
         success: false,
         message: '❌ Erreur générale',
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Erreur inconnue',
       });
     }
 
@@ -137,7 +137,7 @@ export default function TestSupabasePage(): React.JSX.Element {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">🧪 Test d'intégration Supabase</h1>
+        <h1 className="text-3xl font-bold mb-6">🧪 Test d&apos;intégration Supabase</h1>
 
         <div className="mb-6">
           <button

@@ -12,7 +12,7 @@ export default function ProductDetailPage(): React.JSX.Element {
   const params = useParams();
   const slug = params.slug as string;
   const { products, isLoading, error } = useWordPressProducts();
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<unknown>(null);
 
   useEffect(() => {
     if (products && products.length > 0) {
@@ -51,7 +51,7 @@ export default function ProductDetailPage(): React.JSX.Element {
       <div className="container mx-auto py-8 px-4">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Produit non trouvé</h1>
-          <p className="text-gray-600 mb-6">Le produit que vous recherchez n'existe pas ou a été supprimé.</p>
+          <p className="text-gray-600 mb-6">Le produit que vous recherchez n&apos;existe pas ou a été supprimé.</p>
           <div className="space-x-4">
             <Link href="/products">
               <Button>
@@ -60,7 +60,7 @@ export default function ProductDetailPage(): React.JSX.Element {
               </Button>
             </Link>
             <Link href="/">
-              <Button variant="outline">Retour à l'accueil</Button>
+              <Button variant="outline">Retour à l&apos;accueil</Button>
             </Link>
           </div>
         </div>
@@ -88,20 +88,13 @@ export default function ProductDetailPage(): React.JSX.Element {
       {/* Product Details */}
       <WordPressProductCardDetails
         product={product}
-        onAddToCart={(product, quantity, variant) => {
-          console.log('Ajouté au panier:', {
-            product: product.name,
-            quantity,
-            variant: variant?.attributes?.map((attr: any) => attr.option).join(' - ') || 'Standard',
-          });
+        onAddToCart={(product, quantity, _variant) => {
           alert(`Ajouté au panier: ${product.name} (${quantity}x)`);
         }}
         onToggleWishlist={(product) => {
-          console.log('Toggle wishlist:', product.name);
           alert(`Ajouté aux favoris: ${product.name}`);
         }}
         onShare={(product) => {
-          console.log('Partager:', product.name);
           if (navigator.share) {
             navigator.share({
               title: product.name,

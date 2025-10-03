@@ -53,15 +53,15 @@ const ChameleoBestSellers = (): React.JSX.Element => {
     },
   ];
 
-  const handleAddToCart = (productId: string): void => {
+  const handleAddToCart = (_productId: string): void => {
     // TODO: Implement cart functionality
   };
 
-  const handleToggleWishlist = (productId: string): void => {
+  const handleToggleWishlist = (_productId: string): void => {
     // TODO: Implement wishlist functionality
   };
 
-  const handleQuickView = (productId: string): void => {
+  const handleQuickView = (_productId: string): void => {
     // TODO: Implement quick view functionality
   };
 

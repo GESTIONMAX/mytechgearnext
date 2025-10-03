@@ -77,17 +77,22 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   }
 
   // Si on veut afficher les variantes, on les aplatit
-  const itemsToRender = showVariants
-    ? products.flatMap((product) =>
+  type ItemToRender = {
+    product: ProductWithDetails;
+    variant: ProductVariantWithDetails | null;
+  };
+
+  const itemsToRender: ItemToRender[] = showVariants
+    ? products.flatMap((product): ItemToRender[] =>
         product.variants && product.variants.length > 0
-          ? product.variants.map((variant) => ({ product, variant }))
+          ? product.variants.map((variant): ItemToRender => ({ product, variant }))
           : [{ product, variant: null }],
       )
-    : products.map((product) => ({ product, variant: null }));
+    : products.map((product): ItemToRender => ({ product, variant: null }));
 
   return (
     <div className={`grid ${getGridCols()} gap-6`}>
-      {itemsToRender.map((item, _index) => {
+      {itemsToRender.map((item: ItemToRender) => {
         if (item.variant) {
           return (
             <ProductVariantCard

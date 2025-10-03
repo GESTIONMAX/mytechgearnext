@@ -5,8 +5,8 @@ import { WordPressProductCard } from '@/components/WordPressProductCard';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CheckCircle, AlertCircle, Loader2, Grid, List, Filter } from 'lucide-react';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { CheckCircle, AlertCircle, Loader2, Grid, List } from 'lucide-react';
 import { useState } from 'react';
 
 export default function TestProductsIntegrationPage(): React.JSX.Element {
@@ -61,7 +61,7 @@ export default function TestProductsIntegrationPage(): React.JSX.Element {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4">🧪 Test Intégration Produits</h1>
-          <p className="text-gray-600 mb-4">Test de l'intégration des composants WordPress sur la page produits</p>
+          <p className="text-gray-600 mb-4">Test de l&apos;intégration des composants WordPress sur la page produits</p>
           <div className="flex items-center space-x-4 mb-4">
             <Badge variant="outline" className="bg-green-100 text-green-800">
               {products.length} produits WordPress
@@ -83,7 +83,7 @@ export default function TestProductsIntegrationPage(): React.JSX.Element {
             <li>Changez entre vue grille et liste</li>
             <li>Cliquez sur les cartes pour naviguer vers les détails</li>
             <li>Testez les actions : panier, favoris, partage</li>
-            <li>Vérifiez que les données WordPress s'affichent correctement</li>
+            <li>Vérifiez que les données WordPress s&apos;affichent correctement</li>
           </ol>
         </div>
 
@@ -141,19 +141,19 @@ export default function TestProductsIntegrationPage(): React.JSX.Element {
                 key={product.id}
                 product={product}
                 onAddToCart={(product) => {
-                  console.log('Ajouté au panier:', product.name);
+                  // console.log('Ajouté au panier:', product.name);
                   alert(`Ajouté au panier: ${product.name}`);
                 }}
                 onToggleWishlist={(product) => {
-                  console.log('Toggle wishlist:', product.name);
+                  // console.log('Toggle wishlist:', product.name);
                   alert(`Ajouté aux favoris: ${product.name}`);
                 }}
                 onQuickView={(product) => {
-                  console.log('Aperçu rapide:', product.name);
+                  // console.log('Aperçu rapide:', product.name);
                   alert(`Aperçu rapide: ${product.name}`);
                 }}
                 onShare={(product) => {
-                  console.log('Partager:', product.name);
+                  // console.log('Partager:', product.name);
                   if (navigator.share) {
                     navigator.share({
                       title: product.name,
@@ -221,7 +221,7 @@ export default function TestProductsIntegrationPage(): React.JSX.Element {
                   <strong>Produits filtrés:</strong> {filteredProducts.length}
                 </p>
                 <p>
-                  <strong>Mode d'affichage:</strong> {viewMode}
+                  <strong>Mode d&apos;affichage:</strong> {viewMode}
                 </p>
                 <p>
                   <strong>Erreurs:</strong> Aucune

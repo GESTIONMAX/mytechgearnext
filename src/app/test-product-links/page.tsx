@@ -4,7 +4,7 @@ import { useWordPressProducts } from '@/hooks/useWordPressProducts';
 import { WordPressProductCard } from '@/components/WordPressProductCard';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ExternalLink, CheckCircle, XCircle } from 'lucide-react';
+import { ExternalLink, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function TestProductLinksPage(): React.JSX.Element {
@@ -60,9 +60,9 @@ export default function TestProductLinksPage(): React.JSX.Element {
           <h2 className="text-lg font-semibold mb-2">📋 Instructions de test</h2>
           <ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
             <li>Cliquez sur une carte produit pour accéder à la page de détail</li>
-            <li>Vérifiez que la page de détail s'affiche correctement</li>
+            <li>Vérifiez que la page de détail s&apos;affiche correctement</li>
             <li>Testez les actions : ajout au panier, favoris, partage</li>
-            <li>Utilisez le bouton "Retour aux produits" pour revenir</li>
+            <li>Utilisez le bouton &quot;Retour aux produits&quot; pour revenir</li>
           </ol>
         </div>
 
@@ -76,19 +76,19 @@ export default function TestProductLinksPage(): React.JSX.Element {
                 <WordPressProductCard
                   product={product}
                   onAddToCart={(product) => {
-                    console.log('Ajouté au panier:', product.name);
+                    // console.log('Ajouté au panier:', product.name);
                     alert(`Ajouté au panier: ${product.name}`);
                   }}
                   onToggleWishlist={(product) => {
-                    console.log('Toggle wishlist:', product.name);
+                    // console.log('Toggle wishlist:', product.name);
                     alert(`Ajouté aux favoris: ${product.name}`);
                   }}
                   onQuickView={(product) => {
-                    console.log('Aperçu rapide:', product.name);
+                    // console.log('Aperçu rapide:', product.name);
                     alert(`Aperçu rapide: ${product.name}`);
                   }}
                   onShare={(product) => {
-                    console.log('Partager:', product.name);
+                    // console.log('Partager:', product.name);
                     alert(`Partage: ${product.name}`);
                   }}
                   showActions={true}
@@ -120,7 +120,7 @@ export default function TestProductLinksPage(): React.JSX.Element {
               </div>
               <div className="flex items-center space-x-2">
                 <CheckCircle className="w-4 h-4 text-green-500" />
-                <span>Page de détail s'affiche</span>
+                <span>Page de détail s&apos;affiche</span>
               </div>
               <div className="flex items-center space-x-2">
                 <CheckCircle className="w-4 h-4 text-green-500" />
