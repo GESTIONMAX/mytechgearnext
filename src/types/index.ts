@@ -10,7 +10,6 @@ export interface Product {
   price: number;
   salePrice?: number;
   images: string[];
-  image_url?: string; // Ajout pour compatibilité Supabase
   category: string;
   categorySlug?: string; // for robust filtering by slug
   tags: string[];
@@ -30,7 +29,30 @@ export interface ProductVariant {
   inStock: boolean;
   attributes: Record<string, string>; // e.g., { color: "blue", size: "M" }
   images?: string[]; // Images spécifiques à cette variante
-  image_url?: string; // Ajout pour compatibilité Supabase
+  image_url?: string; // URL de l'image principale
+}
+
+// Types étendus pour les composants détaillés
+export interface ProductWithDetails extends Product {
+  image_url?: string;
+  category?: {
+    id: string;
+    name: string;
+    slug: string;
+  };
+  variants?: ProductVariantWithDetails[];
+  features?: string[];
+  specifications?: Record<string, string>;
+  tags?: string[];
+}
+
+export interface ProductVariantWithDetails extends ProductVariant {
+  image_url?: string;
+  product?: {
+    id: string;
+    name: string;
+    slug: string;
+  };
 }
 
 export interface CartItem {
@@ -150,45 +172,3 @@ export interface SortOption {
 
 // React Types
 export type ReactNode = React.ReactNode;
-
-// Types Supabase compatibles
-export interface ProductWithDetails {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  short_description: string;
-  price: number;
-  sale_price: number | null;
-  in_stock: boolean;
-  stock_quantity: number;
-  category_id: string;
-  created_at: string;
-  updated_at: string;
-  is_active: boolean;
-  specifications: Record<string, unknown> | null;
-  image_url?: string;
-  category?: {
-    name: string;
-  };
-  images?: Array<{
-    url: string;
-    alt_text?: string;
-  }>;
-  features?: string[];
-  variants?: ProductVariantWithDetails[];
-}
-
-export interface ProductVariantWithDetails {
-  id: string;
-  name: string;
-  price: number;
-  sale_price: number | null;
-  in_stock: boolean;
-  stock_quantity: number;
-  product_id: string;
-  attributes: Record<string, unknown>;
-  created_at: string;
-  updated_at: string;
-  image_url?: string;
-}

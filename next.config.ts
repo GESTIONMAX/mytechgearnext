@@ -33,6 +33,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'wordpress-acgc8osw80008cocossggkwk.coolify.myvision-connect.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

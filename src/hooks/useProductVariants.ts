@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import type { ProductVariantWithDetails } from '@/types';
+import type { ProductWithDetails } from '@/services/productService';
 
 interface UseProductVariantsOptions {
   productId?: string;
@@ -8,18 +8,18 @@ interface UseProductVariantsOptions {
 }
 
 interface UseProductVariantsReturn {
-  variants: ProductVariantWithDetails[];
+  variants: any[];
   isLoading: boolean;
   error: string | null;
-  selectedVariant: ProductVariantWithDetails | null;
-  setSelectedVariant: (variant: ProductVariantWithDetails) => void;
+  selectedVariant: any | null;
+  setSelectedVariant: (variant: any) => void;
 }
 
 export const useProductVariants = ({ productId, productSlug }: UseProductVariantsOptions): UseProductVariantsReturn => {
-  const [variants, setVariants] = useState<ProductVariantWithDetails[]>([]);
+  const [variants, setVariants] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [selectedVariant, setSelectedVariant] = useState<ProductVariantWithDetails | null>(null);
+  const [selectedVariant, setSelectedVariant] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchVariants = async (): Promise<void> => {

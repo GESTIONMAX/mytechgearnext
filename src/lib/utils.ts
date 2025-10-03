@@ -13,6 +13,15 @@ export function formatPrice(price: number, currency = 'EUR'): string {
   }).format(price / 100);
 }
 
+// Format WordPress price (already in euros)
+export function formatWordPressPrice(price: string | number, currency = 'EUR'): string {
+  const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+  return new Intl.NumberFormat('fr-FR', {
+    style: 'currency',
+    currency,
+  }).format(numPrice);
+}
+
 // Format date for display
 export function formatDate(date: string | Date): string {
   return new Intl.DateTimeFormat('fr-FR', {
